@@ -1,0 +1,25 @@
+1. CART
+-> Design Cart Screen to display the items added in cart (Item Count can be modified).
+-> NEXT: Final Invoice Page for modification things. (Able to mark paid unpaid)
+Discount: 50
+Shipping: 30
+Subtotal: 180
+Tax: 0
+Total: 180
+STATUS: UNPAID
+So order=> customer info=> cart info=>* final invoice* => confirmed page (You can not go back + clear cart) 
+
+
+-> NEXT: Final Page to send the pdf in email (PDF Will be created in next milestone);
+
+2. INVOICES
+-> Design the INVOICE list to display them. ()
+Sort by "latest" "paid" "unpaid"
+Search by business name 
+
+When i search it display a list of customer in popup mood to sleect the customer when select it put the full name in field and display all the invoices there.
+
+NEXT-> Click a single invoice it display the final invoice page to modify and button to 
+Edit invoice,
+Delete invoice 
+Send invoice

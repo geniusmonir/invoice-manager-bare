@@ -1,0 +1,20 @@
+[
+  {
+    "name": "Al-Haramain International Foods",
+    "phone": "(313) 870-9748",
+    "address": "3306 Caniff St, Hamtramck, MI 48212",
+    "email": "alharamain@gmail.com"
+  },
+  {
+    "name": "Dearborn Fresh Supermarket",
+    "phone": "(313) 581-9900",
+    "address": "13661 Colson St, Dearborn, MI 48126",
+    "email": "dearbornfreshmarket@gmail.com"
+  },
+  {
+    "name": "Holbrook Market",
+    "phone": "(313) 972-8001",
+    "address": "3201 Holbrook St, Hamtramck, MI 48212",
+    "email": "holbrookMarket@gmail.com"
+  }
+]

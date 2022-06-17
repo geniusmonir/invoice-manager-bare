@@ -1,0 +1,518 @@
+{
+  "name": "Pop",
+  "description": "Carbonated Drink",
+  "hidden": false,
+  "image": "pop.jpg",
+  "notes": "Personal",
+  "category": "drinks",
+  "price": {
+    "single": 1,
+    "singleShown": true,
+
+    "box": 10,
+    "boxShown": true,
+
+    "pallet": 1000,
+    "palletShown": false,
+
+    "discount": 10
+  }
+}
+
+/// EDITED
+{
+  "name": "Pop",
+  "description": "Carbonated Drink",
+  "hidden": false,
+  "image": "pop.jpg",
+  "notes": "Personal",
+  "category": "drinks",
+  "unitPrice": 99,
+  "discount:": 10,
+  "inStock": 120,
+}
+
+I need one more field that should be on there which is the ability to mark the invoice as paid or unpaid
+That way when I view recites I can sort all the ones that are paid or not
+
+[4:51 PM, 5/15/2022] Amr US Client: We have products that come in single, box, or pallet
+[4:51 PM, 5/15/2022] Md. Moniruzzaman: yes
+[4:52 PM, 5/15/2022] Amr US Client: When adding a product There should be three fields for price
+[4:52 PM, 5/15/2022] Amr US Client: One field for each one
+[4:52 PM, 5/15/2022] Amr US Client: And all three fields have a hidden status also
+[4:54 PM, 5/15/2022] Amr US Client: So let's say I have a product
+Name.Pop
+Desc. Carbonated drink
+Image.
+Note. Personal
+Price
+  Single..1$
+   Box.. 10$
+   Pallet. 1000$
+   Category.  Drinks
+[4:55 PM, 5/15/2022] Amr US Client: Now it is required that I put a price for one of them
+[4:55 PM, 5/15/2022] Amr US Client: If left blank then don't show it on product
+[4:55 PM, 5/15/2022] Amr US Client: If filled out then show it on product
+[4:55 PM, 5/15/2022] Amr US Client: Let's say I only put in single and box
+[4:56 PM, 5/15/2022] Amr US Client: Only those two should show on the order page
+[4:57 PM, 5/15/2022] Amr US Client: I can also hide the prices 
+ So let's say I wanna show only the box price 
+There should be a way where I can hide the single price and only show one price on product page
+[4:57 PM, 5/15/2022] Amr US Client: One price should be displayed no matter what so I can't hide all the prices
+[4:58 PM, 5/15/2022] Amr US Client: I can explain more if you still need information about it
+[4:59 PM, 5/15/2022] Md. Moniruzzaman: let me show you
+[4:59 PM, 5/15/2022] Amr US Client: Ok
+[5:00 PM, 5/15/2022] Amr US Client: So now on the product page only single shows
+[5:00 PM, 5/15/2022] Md. Moniruzzaman: Yes
+[5:01 PM, 5/15/2022] Amr US Client: One must be true at all time
+[5:01 PM, 5/15/2022] Md. Moniruzzaman: yes
+[5:01 PM, 5/15/2022] Amr US Client: One or more
+[5:01 PM, 5/15/2022] Md. Moniruzzaman: thats the idea
+[5:01 PM, 5/15/2022] Amr US Client: Yep
+[5:01 PM, 5/15/2022] Md. Moniruzzaman: So i deleted the category idea
+[5:01 PM, 5/15/2022] Md. Moniruzzaman: Just
+[5:02 PM, 5/15/2022] Amr US Client: I mean you can leave the Categories and I can give you a static list
+[5:02 PM, 5/15/2022] Amr US Client: We can make it function the same way as the old project
+[5:02 PM, 5/15/2022] Amr US Client: Where the admin has to add it for it to show on drop down
+[5:02 PM, 5/15/2022] Md. Moniruzzaman: Thats fine, If you have the static list then i can add that in product
+[5:03 PM, 5/15/2022] Amr US Client: Sounds good
+So for these fields some are optional and some are required
+[5:04 PM, 5/15/2022] Md. Moniruzzaman: notes are optional
+[5:04 PM, 5/15/2022] Amr US Client: Description and notes are optional
+[5:04 PM, 5/15/2022] Md. Moniruzzaman: Alright
+[5:04 PM, 5/15/2022] Amr US Client: Notes are visible to only the admin
+[5:04 PM, 5/15/2022] Amr US Client: When he adds or edits a product
+[5:04 PM, 5/15/2022] Amr US Client: That's all
+[5:04 PM, 5/15/2022] Md. Moniruzzaman: Alright i got that.
+[5:05 PM, 5/15/2022] Amr US Client: Thanks
+
+[5:05 PM, 5/15/2022] Md. Moniruzzaman: So this two are the final structure
+[5:05 PM, 5/15/2022] Amr US Client: So as of now you only need confirmation for the invoice template
+
+[5:06 PM, 5/15/2022] Amr US Client: I'm not sure how the discount should be handled tho
+[5:06 PM, 5/15/2022] Md. Moniruzzaman: It will be adjusted on invoice
+[5:07 PM, 5/15/2022] Amr US Client: Ok
+[5:07 PM, 5/15/2022] Md. Moniruzzaman: do you need the discount on total price or on each item?
+[5:07 PM, 5/15/2022] Amr US Client: Can I add an optional box on both
+[5:08 PM, 5/15/2022] Md. Moniruzzaman: let me show you
+[5:08 PM, 5/15/2022] Amr US Client: If it complicated the process then do it on total
+[5:08 PM, 5/15/2022] Md. Moniruzzaman: yes it will be very ok if you put a percentage on total
+[5:09 PM, 5/15/2022] Amr US Client: Well generally we do discounts per product. 
+But on occasion we also subtract from the total
+[5:09 PM, 5/15/2022] Amr US Client: No our discount is $
+[5:09 PM, 5/15/2022] Md. Moniruzzaman: Alright, How do you want to manage this? on total or on each item? its complecated
+[5:10 PM, 5/15/2022] Md. Moniruzzaman: If you want i can do that
+[5:10 PM, 5/15/2022] Md. Moniruzzaman: I mean its possible
+[5:10 PM, 5/15/2022] Amr US Client: So when I order 10 x pop at 10$ each the total becomes a 100$ for that product. 
+If I add a discount it should subtract from the total of that product only
+[5:11 PM, 5/15/2022] Amr US Client: So if I add 10$ discount for that product it will be 90$ total for that product
+[5:11 PM, 5/15/2022] Amr US Client: I can do it for all the products
+[5:12 PM, 5/15/2022] Amr US Client: On the same invoice
+[5:12 PM, 5/15/2022] Amr US Client: And when I have the total price of everything there should be a box where I can add a discount to it
+[5:13 PM, 5/15/2022] Md. Moniruzzaman: 🥹
+[5:13 PM, 5/15/2022] Md. Moniruzzaman: Alright let me show
+[5:13 PM, 5/15/2022] Amr US Client: If this is too complicated il just do discount from the entire order
+
+[5:13 PM, 5/15/2022] Amr US Client: No
+[5:13 PM, 5/15/2022] Amr US Client: All you will be adding is one field
+[5:14 PM, 5/15/2022] Amr US Client: So you see this
+[5:15 PM, 5/15/2022] Amr US Client: If I apply a discount to the first product let's say 100$. It will subtract from the amount on the right and make that 200
+[5:15 PM, 5/15/2022] Md. Moniruzzaman: this can be done via this structure
+[5:16 PM, 5/15/2022] Md. Moniruzzaman: discount is manual, either you put 1 or put 100 or put 0 its upto you
+[5:16 PM, 5/15/2022] Amr US Client: Yes
+[5:16 PM, 5/15/2022] Md. Moniruzzaman: i just need to subtract the amount
+[5:16 PM, 5/15/2022] Md. Moniruzzaman: from the total
+[5:16 PM, 5/15/2022] Md. Moniruzzaman: of a single item
+[5:16 PM, 5/15/2022] Md. Moniruzzaman: i mean single product
+[5:17 PM, 5/15/2022] Amr US Client: Almost lol
+[5:17 PM, 5/15/2022] Amr US Client: Let's say you ordered 2 boxes 10$ each
+[5:17 PM, 5/15/2022] Amr US Client: Your total is 20$
+[5:18 PM, 5/15/2022] Amr US Client: Now I add the discount of 1$
+[5:18 PM, 5/15/2022] Amr US Client: Your total is 19
+[5:18 PM, 5/15/2022] Md. Moniruzzaman: Make it simpler, i will add another column here named discount.
+[5:18 PM, 5/15/2022] Md. Moniruzzaman: that field you just add a number it will subtract from total
+[5:18 PM, 5/15/2022] Amr US Client: Yes for total order on that column
+[5:19 PM, 5/15/2022] Md. Moniruzzaman: Yes this making sense now
+[5:19 PM, 5/15/2022] Amr US Client: Not for each single product
+[5:19 PM, 5/15/2022] Md. Moniruzzaman: yes i got that now
+[5:19 PM, 5/15/2022] Amr US Client: Yes so discount I believe should be outside of the price
+[5:19 PM, 5/15/2022] Md. Moniruzzaman: One more question
+[5:19 PM, 5/15/2022] Amr US Client: Yes
+[5:20 PM, 5/15/2022] Md. Moniruzzaman: Employee name will be added on the fly, so when add customer to the order, which field you want to search? by name? 2. You want to add just the name of employee? or employee phone too or some other field??
+[5:20 PM, 5/15/2022] Md. Moniruzzaman: by business Name***
+[5:20 PM, 5/15/2022] Md. Moniruzzaman: search**
+[5:21 PM, 5/15/2022] Amr US Client: So when you search for a business to tie it to the order only show business name and search by business name
+[5:22 PM, 5/15/2022] Amr US Client: Once you click on the business name it should ask if I want to add employee who took order
+[5:23 PM, 5/15/2022] Md. Moniruzzaman: Yes, which fields you want to fill up then? just name? or name or phone?
+[5:23 PM, 5/15/2022] Amr US Client: If added then add that field to the invoice if not then leave blank
+[5:23 PM, 5/15/2022] Amr US Client: Name only
+[5:23 PM, 5/15/2022] Md. Moniruzzaman: Alright. All are making sense now
+[5:23 PM, 5/15/2022] Md. Moniruzzaman: One more things please 😐
+[5:24 PM, 5/15/2022] Md. Moniruzzaman: so in product page, two type are shown
+[5:24 PM, 5/15/2022] Md. Moniruzzaman: single and box
+[5:24 PM, 5/15/2022] Amr US Client: I'm not sure how we explained after. After adding an employee on the fly if I make another order for that business did we say to do it again or will it be saved
+[5:24 PM, 5/15/2022] Md. Moniruzzaman: when customer want to give the order he must have to select a type right?
+[5:25 PM, 5/15/2022] Amr US Client: Yes but sometimes we get an order of the same product but let's say 25 boxes and 1 pallet
+[5:25 PM, 5/15/2022] Md. Moniruzzaman: Yes you have to do it again, Writing a name is just a 30 sec task. we are not saving employee name in the database. But i will think about it to make it easier if i can save i will do that
+[5:26 PM, 5/15/2022] Amr US Client: It's ok write it once and it saves to the invoice we can do it again when we do another order
+[5:26 PM, 5/15/2022] Md. Moniruzzaman: For that case i need to put the product in two lines, one price for boxes, and one for pallet
+
+[5:26 PM, 5/15/2022] Amr US Client: Yes
+[5:26 PM, 5/15/2022] Md. Moniruzzaman: Here the same product will be in two row
+[5:27 PM, 5/15/2022] Amr US Client: Yes so on here you will have a field called type
+[5:27 PM, 5/15/2022] Md. Moniruzzaman: One with box and one with pallet, you can increase and decrease the amount from different row
+[5:27 PM, 5/15/2022] Amr US Client: And it will show two lines if the order has selected both
+[5:28 PM, 5/15/2022] Amr US Client: Yes
+[5:28 PM, 5/15/2022] Amr US Client: Wait amount?
+[5:28 PM, 5/15/2022] Amr US Client: The amount will not be affected by type
+[5:29 PM, 5/15/2022] Md. Moniruzzaman: Yes if a customer say select 25 boxes and one pallet, so think about two row, first row the box row, it will show the 250 in total price. in second row, it will show the quantity 1 and total 1000 in second row
+[5:29 PM, 5/15/2022] Amr US Client: Yes
+[5:30 PM, 5/15/2022] Md. Moniruzzaman: and the discount field for multiple instances of a single product like this i will add the discount field with the last one
+[5:30 PM, 5/15/2022] Amr US Client: Discount is different for both
+[5:30 PM, 5/15/2022] Md. Moniruzzaman: I mean the discount field for boxes will be disabled.
+[5:30 PM, 5/15/2022] Md. Moniruzzaman: and the pallet row discount field is editable
+[5:31 PM, 5/15/2022] Md. Moniruzzaman: we have just one discount field in our structure
+[5:31 PM, 5/15/2022] Amr US Client: I'm sorry monir. I made it more complicated
+[5:31 PM, 5/15/2022] Md. Moniruzzaman: No no
+[5:31 PM, 5/15/2022] Md. Moniruzzaman: its just fine
+[5:31 PM, 5/15/2022] Md. Moniruzzaman: just understand
+[5:31 PM, 5/15/2022] Md. Moniruzzaman: give me one minute
+[5:31 PM, 5/15/2022] Amr US Client: We can just scrap the discount for products and just leave on total order
+[5:32 PM, 5/15/2022] Amr US Client: I can have my works calculate the discount that should be added and put it in total
+[5:32 PM, 5/15/2022] Amr US Client: That way is easier I think
+[5:33 PM, 5/15/2022] Md. Moniruzzaman: let me show you
+[5:33 PM, 5/15/2022] Amr US Client: Ok
+[5:34 PM, 5/15/2022] Amr US Client: Since we have a cart monir I think there's a better way
+[5:35 PM, 5/15/2022] Md. Moniruzzaman: so the discount field for box one will be disabled
+[5:35 PM, 5/15/2022] Amr US Client: I have an easier way
+[5:35 PM, 5/15/2022] Md. Moniruzzaman: Which one?
+
+
+[5:35 PM, 5/15/2022] Amr US Client: You pick a product and the type we can only select one
+[5:36 PM, 5/15/2022] Amr US Client: Add to cart puts that in on the receipt as a column
+[5:36 PM, 5/15/2022] Md. Moniruzzaman: 😶😶 This is the easiest way 😊
+[5:36 PM, 5/15/2022] Amr US Client: Now if you select another type and click add it will add to invoice as a new field
+[5:37 PM, 5/15/2022] Md. Moniruzzaman: Its making sense now
+[5:37 PM, 5/15/2022] Amr US Client: So like a radio button
+[5:37 PM, 5/15/2022] Amr US Client: You can only select one
+[5:37 PM, 5/15/2022] Amr US Client: And if you want a box and a pallet then you have to add to cart one for each
+[5:37 PM, 5/15/2022] Md. Moniruzzaman: so for 25 boxes and 1 pallet you need to put two order
+[5:38 PM, 5/15/2022] Amr US Client: Just like this
+[5:38 PM, 5/15/2022] Md. Moniruzzaman: Yes
+[5:38 PM, 5/15/2022] Md. Moniruzzaman: I got it now
+[5:38 PM, 5/15/2022] Md. Moniruzzaman: No problem i understand
+[5:38 PM, 5/15/2022] Amr US Client: Yep that way discount only applies to that order
+[5:38 PM, 5/15/2022] Md. Moniruzzaman: Yes
+[5:38 PM, 5/15/2022] Md. Moniruzzaman: This time its ok.
+[5:38 PM, 5/15/2022] Md. Moniruzzaman: You provide a nice logic, Thanks.
+[5:39 PM, 5/15/2022] Md. Moniruzzaman: Its easier
+
+[5:39 PM, 5/15/2022] Amr US Client: 90% of the time tax is not included
+[5:40 PM, 5/15/2022] Amr US Client: So you see this invoice
+[5:41 PM, 5/15/2022] Md. Moniruzzaman: You need the tax field on total price?
+[5:41 PM, 5/15/2022] Md. Moniruzzaman: on grand total price right>
+[5:41 PM, 5/15/2022] Amr US Client: The fields that I need in the bottom are subtotal discount total and shipping and handling
+[5:42 PM, 5/15/2022] Amr US Client: Only some orders have tax applied
+[5:42 PM, 5/15/2022] Amr US Client: What is a solution for this
+[5:42 PM, 5/15/2022] Md. Moniruzzaman: subtotal discount total and shipping and handling
+[5:42 PM, 5/15/2022] Md. Moniruzzaman: tax
+[5:42 PM, 5/15/2022] Amr US Client: Just calling Shipping cost
+[5:43 PM, 5/15/2022] Md. Moniruzzaman: subtotal: 200
+discount: 50
+shipping and handling: 30
+total: 180
+tax: 0
+[5:43 PM, 5/15/2022] Amr US Client: Subtotal 
+Discount
+Shipping cost
+Total
+[5:43 PM, 5/15/2022] Md. Moniruzzaman: subtotal: 200
+discount: 50
+shipping cost: 30
+tax: 0
+total: 180
+[5:43 PM, 5/15/2022] Amr US Client: Yes
+[5:44 PM, 5/15/2022] Md. Moniruzzaman: subtotal: 200
+discount: 50
+shipping cost: 30
+tax: 10
+total: 190
+[5:44 PM, 5/15/2022] Amr US Client: Yes
+[5:44 PM, 5/15/2022] Md. Moniruzzaman: when you need the tax add that or put 0
+[5:44 PM, 5/15/2022] Md. Moniruzzaman: is that fine?
+[5:44 PM, 5/15/2022] Amr US Client: Yes that's fine perfect
+[5:45 PM, 5/15/2022] Md. Moniruzzaman: Alright, Now just confirm the template of recipt
+[5:45 PM, 5/15/2022] Md. Moniruzzaman: Everything else is just fine
+[5:45 PM, 5/15/2022] Md. Moniruzzaman: I am good to go then
+[5:45 PM, 5/15/2022] Amr US Client: The order would be
+ discount
+Shipping 
+Subtotal 
+Tax
+Total
+[5:46 PM, 5/15/2022] Amr US Client: Quick question
+[5:46 PM, 5/15/2022] Amr US Client: I will be entering this information on what screen
+[5:46 PM, 5/15/2022] Amr US Client: What step
+[5:47 PM, 5/15/2022] Md. Moniruzzaman: let me show you
+[5:47 PM, 5/15/2022] Md. Moniruzzaman: In this page
+[5:47 PM, 5/15/2022] Amr US Client: Please because whatever the step is there should be a way to mark it paid or unpaid. In which I can filter the invoices by it
+[5:48 PM, 5/15/2022] Md. Moniruzzaman: That also in this page
+[5:49 PM, 5/15/2022] Amr US Client: So order=> customer info=> cart info=>* final invoice* => confirmed page
+[5:49 PM, 5/15/2022] Md. Moniruzzaman: 
+Discount: 50
+Shipping: 30
+Subtotal: 180
+Tax: 0
+Total: 180
+Payment Status: PAID
+[5:50 PM, 5/15/2022] Amr US Client: Yes
+[5:50 PM, 5/15/2022] Amr US Client: So in your opinion do you think we need a cart page? Or can we do everything from the invoice page
+[5:50 PM, 5/15/2022] Md. Moniruzzaman: We need both
+[5:51 PM, 5/15/2022] Amr US Client: Ok
+[5:51 PM, 5/15/2022] Amr US Client: Now when I hit confirm what happens to the invoice
+[5:52 PM, 5/15/2022] Md. Moniruzzaman: Customer search products add them, then those will store on cart. when customer done selecting products click checkout from cart page. Your employee will take the tab then, and give the customer final confirmation in the invoice page and adjust discount from there
+[5:52 PM, 5/15/2022] Amr US Client: 👍
+[5:53 PM, 5/15/2022] Amr US Client: Does the invoice save as a pdf on device at the moment I click confirm
+[5:53 PM, 5/15/2022] Amr US Client: Or only if I click send button
+
+[5:53 PM, 5/15/2022] Md. Moniruzzaman: Customer just select the products and add them in cart. Your employee will take the tab and then press checkout and give the final confirmation with all adjustment. Thats it/
+[5:53 PM, 5/15/2022] Md. Moniruzzaman: SAVE SEND
+[5:53 PM, 5/15/2022] Md. Moniruzzaman: CLOSE
+[5:54 PM, 5/15/2022] Md. Moniruzzaman: ThREE different button
+[5:54 PM, 5/15/2022] Amr US Client: This is perfect
+[5:54 PM, 5/15/2022] Md. Moniruzzaman: SAVE WILL SAVE PDF
+[5:54 PM, 5/15/2022] Md. Moniruzzaman: SEND WILL SEND MAIL
+[5:54 PM, 5/15/2022] Amr US Client: Perfect
+[5:54 PM, 5/15/2022] Md. Moniruzzaman: CLOSE WILL CLOSE THE INVOICE PAGE
+[5:54 PM, 5/15/2022] Amr US Client: Now let's say I close without saving
+[5:54 PM, 5/15/2022] Amr US Client: Can I goto invoices and save
+[5:55 PM, 5/15/2022] Md. Moniruzzaman: You will find the cart again and press checkout again
+[5:55 PM, 5/15/2022] Md. Moniruzzaman: I will save the status of the invoice upto the point you press the done button in the cart page
+[5:56 PM, 5/15/2022] Md. Moniruzzaman: IF you press done button in cart page it will remove all carts products and invoice saving status and make the app usable for new customer
+[5:57 PM, 5/15/2022] Amr US Client: So the moment I click confirm 
+I want it to automatically save it as pdf
+[5:57 PM, 5/15/2022] Md. Moniruzzaman: YES
+[5:57 PM, 5/15/2022] Amr US Client: Is that possible
+[5:57 PM, 5/15/2022] Amr US Client: What's the save button for then?
+[5:57 PM, 5/15/2022] Md. Moniruzzaman: CONFIRM SEND CLOSE
+[5:58 PM, 5/15/2022] Amr US Client: No no lol
+[5:58 PM, 5/15/2022] Md. Moniruzzaman: CONFIRM/SAVE
+[5:58 PM, 5/15/2022] Md. Moniruzzaman: SAVE OR CONFIRM IS FOR SAVING PDF
+[6:00 PM, 5/15/2022] Md. Moniruzzaman: You need a button for saving pdf, you need a button for sending/sharing pdf via email, you need a button for closing the invoice page all these button are in invoice page. Another button will be in cart page, you will press that button when everything is done with that customer
+[6:00 PM, 5/15/2022] Amr US Client: Not understand something lol. Let's say I am on cart. I click next now I am editing the invoice where I add the discount for total and add tax, shipping and status.. now when I hit the next page it should save automatically to the device as pdf
+[6:01 PM, 5/15/2022] Amr US Client: I don't want the button to save
+[6:01 PM, 5/15/2022] Md. Moniruzzaman: Ok its possible
+[6:01 PM, 5/15/2022] Amr US Client: My workers will forget to press it
+[6:01 PM, 5/15/2022] Md. Moniruzzaman: You click next it will save autometically
+[6:02 PM, 5/15/2022] Md. Moniruzzaman: on next page you can send the email
+[6:02 PM, 5/15/2022] Md. Moniruzzaman: We need to delete the cart data, Where do you want to delete the cart data?
+[6:02 PM, 5/15/2022] Amr US Client: Yes so I click next to goto the send page it should be saved automatically and that page I can send the email or what's app or close the order which will return me to the main page
+[6:03 PM, 5/15/2022] Md. Moniruzzaman: Now the cart products are there
+[6:03 PM, 5/15/2022] Amr US Client: The moment it is saved as pdf
+[6:03 PM, 5/15/2022] Amr US Client: I cannot go back
+[6:03 PM, 5/15/2022] Md. Moniruzzaman: So you need to add a button any place to tell the app that you are done with that customer
+[6:04 PM, 5/15/2022] Md. Moniruzzaman: When pressing next i can clear the cart too
+[6:04 PM, 5/15/2022] Amr US Client: There should be a cancle order on all the pages order.. customer..cart.. final invoice.. and the send page is just a close
+[6:05 PM, 5/15/2022] Amr US Client: And there should be a back button to go back one screen
+[6:05 PM, 5/15/2022] Amr US Client: None for the send button tho
+[6:06 PM, 5/15/2022] Md. Moniruzzaman: After pressing next of final invoice, you wont want to go back
+[6:06 PM, 5/15/2022] Md. Moniruzzaman: right?
+[6:06 PM, 5/15/2022] Amr US Client: If I'm on the add customer page I should be able to click back and it takes me back one page
+[6:06 PM, 5/15/2022] Md. Moniruzzaman: But in invoice page you can go back to cart page
+[6:07 PM, 5/15/2022] Md. Moniruzzaman: We are in mobile app, so you can go back anytime to previous page by clicking or swiping the back button
+[6:07 PM, 5/15/2022] Amr US Client: Yes so the moment I hit submit order it saves to the device as pdf.. takes me to the next page.. clears the field and not be able to go back
+[6:07 PM, 5/15/2022] Amr US Client: Back button or icon is good
+[6:08 PM, 5/15/2022] Md. Moniruzzaman: This place i just need to clear all the pages in the stack serial to disable the back button. Going back is normal behavior from any page to previous
+[6:08 PM, 5/15/2022] Amr US Client: My workers will not like swipe
+[6:08 PM, 5/15/2022] Md. Moniruzzaman: Tab has the back button
+[6:08 PM, 5/15/2022] Md. Moniruzzaman: SWIPE is just for ios
+[6:08 PM, 5/15/2022] Md. Moniruzzaman: its native feature
+[6:09 PM, 5/15/2022] Amr US Client: Yes you can disable or do what's necessary because at this stage it's final and cannot be changed unless you click on the invoice from the invoice section and only edit the invoice not add or remove products
+[6:10 PM, 5/15/2022] Md. Moniruzzaman: Yes when its final you can do any change only in all invoice page
+[6:10 PM, 5/15/2022] Amr US Client: Perfect and when I hit save it should replace the old one
+[6:10 PM, 5/15/2022] Amr US Client: Old pdf
+[6:11 PM, 5/15/2022] Md. Moniruzzaman: Yes
+[6:11 PM, 5/15/2022] Amr US Client: Now for product when editing you can filter by category or search by product name
+[6:12 PM, 5/15/2022] Amr US Client: For business you can only search by name
+[6:12 PM, 5/15/2022] Md. Moniruzzaman: Ok
+[6:13 PM, 5/15/2022] Md. Moniruzzaman: i am really sorry to bother you like this. But at this point i understand almost everything for this project. It will be helpful for me now. Thanks a lot for the time.
+[6:14 PM, 5/15/2022] Amr US Client: Now for invoice when you click on it from main page it should take you to a page where you can see all the invoices sorted automatically by latest
+[6:14 PM, 5/15/2022] Md. Moniruzzaman: Yes. I understand that
+[6:15 PM, 5/15/2022] Md. Moniruzzaman: If everything is sorted in my brain i can do that anyway. Thats why i ask many questions.
+[6:15 PM, 5/15/2022] Amr US Client: Ur good I like that
+[6:15 PM, 5/15/2022] Md. Moniruzzaman: Thanks
+[6:16 PM, 5/15/2022] Amr US Client: So when your on the view invoice you should be able to sort them by paid and unpaid where it will show paid or unpaid for all the invoices
+[6:17 PM, 5/15/2022] Md. Moniruzzaman: Ok.
+[6:17 PM, 5/15/2022] Md. Moniruzzaman: It can be done
+[6:18 PM, 5/15/2022] Amr US Client: And lastly you should be able to search by business name where it will show all the invoices for that one business where I can filter by paid or unpaid
+[6:19 PM, 5/15/2022] Amr US Client: So as long as I can search an invoice, filter by status, or Search a business and filter by status it's good
+[6:19 PM, 5/15/2022] Md. Moniruzzaman: You want to search invoice by business name?
+[6:19 PM, 5/15/2022] Amr US Client: I want to pull up the invoice for a single business
+[6:19 PM, 5/15/2022] Amr US Client: To check my history for that business
+[6:20 PM, 5/15/2022] Amr US Client: So this can be done in two ways
+[6:20 PM, 5/15/2022] Md. Moniruzzaman: You search the with the business name you will get all the invoices of that business
+[6:20 PM, 5/15/2022] Md. Moniruzzaman: Right?
+[6:20 PM, 5/15/2022] Amr US Client: I can make it really easy lol
+[6:21 PM, 5/15/2022] Md. Moniruzzaman: Yes tell ne
+[6:21 PM, 5/15/2022] Amr US Client: Ur on the view invoice. It should be sorted by latest date automatically  correct
+[6:21 PM, 5/15/2022] Md. Moniruzzaman: Yes
+[6:22 PM, 5/15/2022] Amr US Client: Now there should be a filter button or dropdown that has three categories 
+Latest
+Paid
+Unpaid
+[6:22 PM, 5/15/2022] Md. Moniruzzaman: Yes
+[6:22 PM, 5/15/2022] Md. Moniruzzaman: Fine
+[6:22 PM, 5/15/2022] Amr US Client: It should be automatically selected on latest
+[6:23 PM, 5/15/2022] Md. Moniruzzaman: Yes
+[6:23 PM, 5/15/2022] Amr US Client: Now since all the files are saved as the business name then that makes it easier
+[6:24 PM, 5/15/2022] Md. Moniruzzaman: How you want to fine all invoices with a businesse name?
+[6:25 PM, 5/15/2022] Amr US Client: In the search bar whatever I search the results should be from that filter. 
+
+So if I'm searching a business name under paid it should be only showing the paid invoices 
+
+Same with unpaid
+
+If the filter is on latest it should search all the invoices
+[6:25 PM, 5/15/2022] Amr US Client: The search will be by business name
+[6:25 PM, 5/15/2022] Amr US Client: Or date
+[6:25 PM, 5/15/2022] Amr US Client: If dare is possible
+[6:25 PM, 5/15/2022] Amr US Client: Date
+[6:26 PM, 5/15/2022] Md. Moniruzzaman: Date is complicated
+[6:26 PM, 5/15/2022] Md. Moniruzzaman: Name is possible
+[6:26 PM, 5/15/2022] Amr US Client: Yes do name only
+[6:26 PM, 5/15/2022] Md. Moniruzzaman: Ok
+[6:26 PM, 5/15/2022] Md. Moniruzzaman: Thats fine
+[6:26 PM, 5/15/2022] Amr US Client: As to what is actually being displayed
+[6:26 PM, 5/15/2022] Amr US Client: Idk how you will do it
+[6:26 PM, 5/15/2022] Md. Moniruzzaman: Name total amount or description and pdf file
+[6:26 PM, 5/15/2022] Amr US Client: Ag grid?
+[6:27 PM, 5/15/2022] Md. Moniruzzaman: Yes
+[6:27 PM, 5/15/2022] Md. Moniruzzaman: No worries
+[6:27 PM, 5/15/2022] Md. Moniruzzaman: Do that in a good way
+[6:27 PM, 5/15/2022] Md. Moniruzzaman: I will save data as json and pdf so i can display all info
+[6:28 PM, 5/15/2022] Amr US Client: Name date total
+[6:28 PM, 5/15/2022] Md. Moniruzzaman: Just tell me which info you need in invoice card
+[6:28 PM, 5/15/2022] Md. Moniruzzaman: Ok
+[6:28 PM, 5/15/2022] Amr US Client: When you click on it it should take you to the actual final invoice
+[6:28 PM, 5/15/2022] Md. Moniruzzaman: Yes
+[6:29 PM, 5/15/2022] Amr US Client: There should be 3 buttons on there
+[6:29 PM, 5/15/2022] Md. Moniruzzaman: The final invoice where you can adjust anything and again send or share the new pdf file from there
+[6:29 PM, 5/15/2022] Amr US Client: Edit invoice,
+Delete invoice 
+Send invoice
+[6:29 PM, 5/15/2022] Amr US Client: Delete and edit you know what they do
+[6:30 PM, 5/15/2022] Md. Moniruzzaman: ওকে
+[6:30 PM, 5/15/2022] Md. Moniruzzaman: ok
+[6:31 PM, 5/15/2022] Amr US Client: I want to ask something for the edit
+[6:31 PM, 5/15/2022] Md. Moniruzzaman: Ok
+[6:31 PM, 5/15/2022] Md. Moniruzzaman: Tell me
+[6:31 PM, 5/15/2022] Amr US Client: Let's say we change the quantity
+[6:31 PM, 5/15/2022] Amr US Client: Will the price be adjusted?
+[6:31 PM, 5/15/2022] Md. Moniruzzaman: Yes
+[6:32 PM, 5/15/2022] Md. Moniruzzaman: It will auto adjust all palaces
+[6:32 PM, 5/15/2022] Amr US Client: Ok so in that case the only fields available to edit
+Are
+Quantity 
+Price
+Discounts
+[6:33 PM, 5/15/2022] Md. Moniruzzaman: Price mean unit price?
+[6:33 PM, 5/15/2022] Amr US Client: Is that possible
+[6:33 PM, 5/15/2022] Md. Moniruzzaman: Yes
+[6:33 PM, 5/15/2022] Md. Moniruzzaman: But price is coming from product
+[6:34 PM, 5/15/2022] Amr US Client: Yes let's say pallet is damaged and they want to return half
+[6:34 PM, 5/15/2022] Md. Moniruzzaman: So you want the product price as there but change only that specific invoice price?
+[6:34 PM, 5/15/2022] Md. Moniruzzaman: Okk
+[6:34 PM, 5/15/2022] Amr US Client: Yes the change on invoice should not effect the product
+[6:34 PM, 5/15/2022] Md. Moniruzzaman: Okk
+[6:34 PM, 5/15/2022] Md. Moniruzzaman: I can do that
+[6:35 PM, 5/15/2022] Amr US Client: And if they want to return something
+[6:35 PM, 5/15/2022] Amr US Client: I can just put 0
+[6:35 PM, 5/15/2022] Amr US Client: It will stay there but the price will be 0
+[6:35 PM, 5/15/2022] Md. Moniruzzaman: Yes or a cross icon
+[6:35 PM, 5/15/2022] Md. Moniruzzaman: It also can be possible
+[6:35 PM, 5/15/2022] Amr US Client: Well if that's possible on the edit then gladly
+[6:35 PM, 5/15/2022] Md. Moniruzzaman: You can either keep with 0 or completely remvee
+[6:36 PM, 5/15/2022] Md. Moniruzzaman: Which one you want?
+[6:36 PM, 5/15/2022] Md. Moniruzzaman: At this place do You need to add new?? Product?
+[6:36 PM, 5/15/2022] Amr US Client: Put the cross
+[6:36 PM, 5/15/2022] Md. Moniruzzaman: Ok
+[6:36 PM, 5/15/2022] Amr US Client: Yes if taken out then it's out
+[6:36 PM, 5/15/2022] Md. Moniruzzaman: Just remove the row
+[6:37 PM, 5/15/2022] Amr US Client: Yes when I click x
+[6:37 PM, 5/15/2022] Amr US Client: But 0 leaves it there
+[6:37 PM, 5/15/2022] Amr US Client: Just 0
+[6:37 PM, 5/15/2022] Md. Moniruzzaman: Ok but logically puttting 0 removes the row
+[6:37 PM, 5/15/2022] Md. Moniruzzaman: I think removing the row is fine
+[6:37 PM, 5/15/2022] Amr US Client: Ok I can put 0 on price
+[6:37 PM, 5/15/2022] Amr US Client: That's fine
+[6:38 PM, 5/15/2022] Md. Moniruzzaman: So which one you want? Putting 0 in price field? Or removing the row?
+[6:38 PM, 5/15/2022] Amr US Client: Or il just add it to the discount and it will make the amount 0
+[6:38 PM, 5/15/2022] Amr US Client: If I click x it removes it
+[6:38 PM, 5/15/2022] Amr US Client: That's all
+[6:39 PM, 5/15/2022] Md. Moniruzzaman: that makes the sense😄😄
+[6:39 PM, 5/15/2022] Md. Moniruzzaman: Okk
+[6:39 PM, 5/15/2022] Amr US Client: If I want the amount to be 0 I will just add discount
+[6:39 PM, 5/15/2022] Md. Moniruzzaman: Got it
+[6:39 PM, 5/15/2022] Md. Moniruzzaman: Okk
+[6:39 PM, 5/15/2022] Md. Moniruzzaman: So you need add new product in this place??
+[6:39 PM, 5/15/2022] Amr US Client: No
+[6:40 PM, 5/15/2022] Amr US Client: Only editing or remove products
+[6:40 PM, 5/15/2022] Md. Moniruzzaman: Ok
+[6:40 PM, 5/15/2022] Md. Moniruzzaman: During order?
+[6:40 PM, 5/15/2022] Amr US Client: Adding will be done on new order
+[6:40 PM, 5/15/2022] Md. Moniruzzaman: Okk
+[6:40 PM, 5/15/2022] Md. Moniruzzaman: Okk
+[6:40 PM, 5/15/2022] Md. Moniruzzaman: Fine
+[6:40 PM, 5/15/2022] Md. Moniruzzaman: Got it
+
+[6:40 PM, 5/15/2022] Amr US Client: Now let's say I edit a business from Walmart to walmaaart
+[6:41 PM, 5/15/2022] Amr US Client: If I go on the invoice will it be changed
+[6:42 PM, 5/15/2022] Amr US Client: Nvm I hv a better idea you can add a business
+[6:42 PM, 5/15/2022] Md. Moniruzzaman: Okk
+[6:42 PM, 5/15/2022] Md. Moniruzzaman: Will change
+[6:43 PM, 5/15/2022] Amr US Client: Instead of edit business just replace it with delete business
+[6:43 PM, 5/15/2022] Amr US Client: There is no need to complicate it for my self and you
+[6:44 PM, 5/15/2022] Md. Moniruzzaman: Did not get it
+[6:44 PM, 5/15/2022] Md. Moniruzzaman: Delete will delete all invoice
+[6:44 PM, 5/15/2022] Md. Moniruzzaman: Business delete will*
+[6:44 PM, 5/15/2022] Md. Moniruzzaman: Of that business
+[6:45 PM, 5/15/2022] Amr US Client: Ok so from main page you click business
+[6:46 PM, 5/15/2022] Amr US Client: That takes you to a page that has three buttons. 
+Add vendor
+View vendors
+[6:46 PM, 5/15/2022] Amr US Client: Two buttons
+[6:46 PM, 5/15/2022] Amr US Client: Add is adding
+[6:46 PM, 5/15/2022] Amr US Client: View will let me search the vendors by name
+[6:48 PM, 5/15/2022] Amr US Client: If I click on a vendor it will open a page with all the vendor info. 
+
+It will have buttons
+1. Export invoices
+2. Delete vendor
+[6:49 PM, 5/15/2022] Amr US Client: Export will save a zip file with all the pdf invoices for that business on the device
+
+I will take those out personally
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

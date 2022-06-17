@@ -1,0 +1,32 @@
+[
+  {
+    "name": "Hummus with Tahini Chick Pea Dip 14oz",
+    "category": "ZIAD",
+    "unitPrice": "24.99",
+    "inStock": "25",
+    "discount": 0,
+    "image": "chickpea.jpg",
+    "description": "Hummus with Tahini Sauce Chick Pea Dip 100% Natural 14oz",
+    "notes": "box"
+  },
+  {
+    "name": "Raw All-Natural Honeycomb 13oz",
+    "category": "ZIAD",
+    "unitPrice": "14.99",
+    "discount": 0,
+    "image": "honey.jpg",
+    "inStock": "50",
+    "description": "Ziyad Raw All-Natural Honeycomb, 100% Pure Unfiltered Honey Comb, 100% All-Natural, No Additives, No Preservatives, From the Turkish Mountains, 13 oz",
+    "notes": "singles"
+  },
+  {
+    "name": "Vimto Glass 25oz",
+    "category": "ZIAD",
+    "unitPrice": "49.99",
+    "discount": 0,
+    "image": "vimto.jpg",
+    "inStock": "80",
+    "description": "Vimto Fruit Syrup Concentrate-Flavorful Fruit Cordial For Drinks & Tea, 25fl.oz",
+    "notes": "box"
+  }
+]

@@ -1,0 +1,13 @@
+{
+  "hidden": false,
+  "image": "pop.jpg",
+  "category": "drinks optional",
+
+  "name": "Pop",
+  "unitPrice": 99,
+  "discount:": 10,
+  "inStock": 10,
+
+  "description": "Carbonated Drink optional",
+  "notes": "Personal optional"
+}

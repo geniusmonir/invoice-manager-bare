@@ -1,0 +1,18 @@
+Or better off for exporting all the invoices to a zip and deleting all invoices option can only be done from the admin page
+In admin setting I have the ability to add my information for the first time and edit later on
+If that's possible then the app should be loaded the first time with a default logo that has status hide from invoice
+
+ADMIN OPTIONS
+Logo (Optional)?: string;
+showInInvoice: boolean,
+
+Business name: string,
+My name: string,
+Address: string,
+Phone: string,
+Website (Optional)?: string,
+Email (Optional)?: string,
+
+ ---> Now I can't add products, customers, or orders unless I have my information is filled out
+
+ EXTRA: Or better off for exporting all the invoices to a zip and deleting all invoices option can only be done from the admin page
