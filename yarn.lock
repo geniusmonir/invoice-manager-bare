@@ -5132,6 +5132,11 @@ react-native-elements@^3.4.2:
     react-native-ratings "8.0.4"
     react-native-size-matters "^0.3.1"
 
+react-native-file-access@1.7.1:
+  version "1.7.1"
+  resolved "https://registry.yarnpkg.com/react-native-file-access/-/react-native-file-access-1.7.1.tgz#ecddcfd1e95f05daa70b5484beec673fd99c5397"
+  integrity sha512-yJIH/7lSL+7oOgvRDcJtchIal9Vs15wk1aC3tyunt2w0DlBD3QnZWmbTNih6RPcZ6NjAqTB9ZCsKLRxIv9Y4ow==
+
 react-native-gesture-handler@~2.1.0:
   version "2.1.3"
   resolved "https://registry.yarnpkg.com/react-native-gesture-handler/-/react-native-gesture-handler-2.1.3.tgz#b96f1e61932d5062cb1023259e1649d65f78338b"
@@ -5210,6 +5215,11 @@ react-native-safe-area-context@3.3.2:
   version "3.3.2"
   resolved "https://registry.yarnpkg.com/react-native-safe-area-context/-/react-native-safe-area-context-3.3.2.tgz#9549a2ce580f2374edb05e49d661258d1b8bcaed"
   integrity sha512-yOwiiPJ1rk+/nfK13eafbpW6sKW0jOnsRem2C1LPJjM3tfTof6hlvV5eWHATye3XOpu2cJ7N+HdkUvUDGwFD2Q==
+
+react-native-scoped-storage@^1.9.2:
+  version "1.9.2"
+  resolved "https://registry.yarnpkg.com/react-native-scoped-storage/-/react-native-scoped-storage-1.9.2.tgz#12f90ad9a601a1dddab39c22110062f622558c46"
+  integrity sha512-Jh/I8sd7T9eqq4OWScL1aM7N5PPEEqw2Bs7i8/gcIIBDekwU/vYWTlyc4ute0pABAu41vSA+4RnfoRsyWOerJQ==
 
 react-native-screens@^3.4.0:
   version "3.13.1"

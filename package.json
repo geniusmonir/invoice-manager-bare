@@ -31,6 +31,7 @@
     "expo-print": "~11.1.0",
     "expo-screen-orientation": "~4.1.1",
     "expo-sharing": "~10.1.0",
+    "expo-splash-screen": "~0.14.1",
     "expo-status-bar": "~1.2.0",
     "expo-updates": "~0.11.7",
     "formik": "^2.2.9",
@@ -43,6 +44,7 @@
     "react-native-dialog": "^9.2.1",
     "react-native-element-dropdown": "^1.8.8",
     "react-native-elements": "^3.4.2",
+    "react-native-file-access": "1.7.1",
     "react-native-gesture-handler": "~2.1.0",
     "react-native-google-places-autocomplete": "^2.4.1",
     "react-native-image-viewing": "^0.2.2",
@@ -51,6 +53,7 @@
     "react-native-ratings": "^8.1.0",
     "react-native-reanimated": "~2.3.1",
     "react-native-safe-area-context": "3.3.2",
+    "react-native-scoped-storage": "^1.9.2",
     "react-native-screens": "~3.10.1",
     "react-native-vector-icons": "^9.1.0",
     "react-native-web": "0.17.1",
@@ -60,8 +63,7 @@
     "redux-persist": "^6.0.0",
     "redux-thunk": "^2.4.1",
     "traverse": "^0.6.6",
-    "yup": "^0.32.11",
-    "expo-splash-screen": "~0.14.1"
+    "yup": "^0.32.11"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",

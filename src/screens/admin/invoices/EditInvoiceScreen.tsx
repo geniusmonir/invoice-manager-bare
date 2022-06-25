@@ -43,6 +43,7 @@ import {
   updateInvoiceItemFE,
 } from '../../../store/reducer/invoice';
 import { isLarge } from '../../../utils/utils';
+import { Dirs, FileSystem as RNFAFileSystem } from 'react-native-file-access';
 
 const EditInvoiceScreen: React.FC<EditInvoiceScreensProps> = ({
   route,
@@ -107,23 +108,15 @@ const EditInvoiceScreen: React.FC<EditInvoiceScreensProps> = ({
     );
   }
 
-  const saveToFolderStructure = async (uri: string, nameStr: string) => {
+  const saveToFolderStructure = async (
+    backupDirFile: string,
+    fileName: string
+  ) => {
     const permission = await MediaLibrary.requestPermissionsAsync();
 
     if (permission.granted) {
       try {
-        const asset = await MediaLibrary.createAssetAsync(uri);
-        MediaLibrary.createAlbumAsync(
-          `InvoiceManager/Invoices/${nameStr}`,
-          asset,
-          false
-        )
-          .then(() => {
-            Alert.alert('PDF Successfully added to the folder Structure!');
-          })
-          .catch(() => {
-            Alert.alert('Error! Unable to export JSON file.');
-          });
+        await RNFAFileSystem.cpExternal(backupDirFile, fileName, 'downloads');
       } catch (error) {
         Alert.alert('Unknown Error Occured!');
       }
@@ -135,6 +128,10 @@ const EditInvoiceScreen: React.FC<EditInvoiceScreensProps> = ({
   const saveToPDFFile = async (curInv: Invoice) => {
     const html = getInvoiceHTML(curInv, settings);
     const nameStr = getCapitalizeSentence(curInv.customer.business_name);
+    const fileName = `${nameStr}_${curInv.invoiceNumber}_${moment(
+      curInv.invoiceDate
+    ).format('DD-MM-YYYY')}.pdf`;
+
     const { uri: cachedUri } = await Print.printToFileAsync({
       html,
     });
@@ -142,9 +139,7 @@ const EditInvoiceScreen: React.FC<EditInvoiceScreensProps> = ({
     const uri = `${cachedUri.slice(
       0,
       cachedUri.lastIndexOf('/') + 1
-    )}${nameStr}_${curInv.invoiceNumber}_${moment(curInv.invoiceDate).format(
-      'DD-MM-YYYY'
-    )}.pdf`;
+    )}${fileName}`;
 
     await FileSystem.moveAsync({
       from: cachedUri,
@@ -153,7 +148,7 @@ const EditInvoiceScreen: React.FC<EditInvoiceScreensProps> = ({
 
     dispatch(setCurrentPdfUri({ uri }));
 
-    await saveToFolderStructure(uri, nameStr);
+    await saveToFolderStructure(uri, fileName);
   };
 
   const {

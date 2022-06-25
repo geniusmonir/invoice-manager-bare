@@ -16,6 +16,7 @@ import { addCategory, deleteCategory } from '../../store/reducer/category';
 import { getCategoryStr, setCategoryStr } from '../../utils/functions';
 import { deleteAllInvoices, importInvoice } from '../../store/reducer/invoice';
 import { isLarge } from '../../utils/utils';
+import { Dirs, FileSystem as RNFAFileSystem } from 'react-native-file-access';
 
 const AdminSettingsDialog: React.FC<{
   visible: boolean;
@@ -64,18 +65,8 @@ const AdminSettingsDialog: React.FC<{
 
     if (permission.granted) {
       try {
-        const asset = await MediaLibrary.createAssetAsync(backupDirFile);
-        MediaLibrary.createAlbumAsync(
-          'InvoiceManager/Backups/Invoice',
-          asset,
-          false
-        )
-          .then(() => {
-            Alert.alert(`Congratulations ${owner_name}! \nExport Success!`);
-          })
-          .catch(() => {
-            Alert.alert('Error! Unable to export JSON file.');
-          });
+        await RNFAFileSystem.cpExternal(backupDirFile, fileName, 'downloads');
+        Alert.alert(`Congratulations ${owner_name}! \nExport Success!.`);
       } catch (error) {
         Alert.alert('Unknown Error Occured!');
       }

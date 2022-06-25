@@ -163,7 +163,7 @@ const InvoiceListView: React.FC<{
                     fontSize: isLarge ? 30 : 24,
                     color: Colors.primaryColor,
                   }}>
-                  ${l.total}
+                  ${l.total.toFixed(2)}
                 </Text>
               </ListItem.Subtitle>
 

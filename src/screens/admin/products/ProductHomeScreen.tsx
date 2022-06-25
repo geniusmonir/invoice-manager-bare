@@ -1,5 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, View, SafeAreaView, Alert } from 'react-native';
+import {
+  StyleSheet,
+  View,
+  SafeAreaView,
+  Alert,
+  PermissionsAndroid,
+} from 'react-native';
 import { Text } from '@rneui/themed';
 import { ProductHomeScreensProps } from '../../../types/mainNavigatorTypes';
 import Colors from '../../../constants/Colors';
@@ -20,6 +26,8 @@ import * as DocumentPicker from 'expo-document-picker';
 import moment from 'moment';
 const { StorageAccessFramework } = FileSystem;
 import { isLarge } from '../../../utils/utils';
+import { Dirs, FileSystem as RNFAFileSystem } from 'react-native-file-access';
+import * as ScopedStorage from 'react-native-scoped-storage';
 
 const ProductHomeScreen: React.FC<ProductHomeScreensProps> = ({
   route,
@@ -68,19 +76,10 @@ const ProductHomeScreen: React.FC<ProductHomeScreensProps> = ({
 
     if (permission.granted) {
       try {
-        const asset = await MediaLibrary.createAssetAsync(backupDirFile);
-        MediaLibrary.createAlbumAsync(
-          'InvoiceManager/Backups/Product',
-          asset,
-          false
-        )
-          .then(() => {
-            Alert.alert(`Congratulations ${owner_name}! \nExport Success!.`);
-          })
-          .catch(() => {
-            Alert.alert('Error! Unable to export JSON file.');
-          });
+        await RNFAFileSystem.cpExternal(backupDirFile, fileName, 'downloads');
+        Alert.alert(`Congratulations ${owner_name}! \nExport Success!.`);
       } catch (error) {
+        console.log(error);
         Alert.alert('Unknown Error Occured!');
       }
     } else {

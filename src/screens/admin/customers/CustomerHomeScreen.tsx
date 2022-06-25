@@ -18,6 +18,7 @@ import {
 } from '../../../store/reducer/customer';
 import moment from 'moment';
 import { isLarge } from '../../../utils/utils';
+import { Dirs, FileSystem as RNFAFileSystem } from 'react-native-file-access';
 
 const CustomerHomeScreen: React.FC<CustomerHomeScreensProps> = ({
   route,
@@ -66,18 +67,8 @@ const CustomerHomeScreen: React.FC<CustomerHomeScreensProps> = ({
 
     if (permission.granted) {
       try {
-        const asset = await MediaLibrary.createAssetAsync(backupDirFile);
-        MediaLibrary.createAlbumAsync(
-          'InvoiceManager/Backups/Customer',
-          asset,
-          false
-        )
-          .then(() => {
-            Alert.alert(`Congratulations ${owner_name}! \nExport Success!.`);
-          })
-          .catch(() => {
-            Alert.alert('Error! Unable to export JSON file.');
-          });
+        await RNFAFileSystem.cpExternal(backupDirFile, fileName, 'downloads');
+        Alert.alert(`Congratulations ${owner_name}! \nExport Success!.`);
       } catch (error) {
         Alert.alert('Unknown Error Occured!');
       }
