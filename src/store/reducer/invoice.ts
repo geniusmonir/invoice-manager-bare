@@ -195,7 +195,7 @@ export const invoiceSlice = createSlice({
       } else {
         const customerNewInvoices = state.invoices.map((inv) => {
           if (
-            inv[customer._id] &&
+            inv[customer._id]?.length > 0 &&
             inv[customer._id][0].customer._id === customer._id
           ) {
             inv[customer._id] = [...inv[customer._id], data.payload.invoice];
@@ -227,7 +227,7 @@ export const invoiceSlice = createSlice({
       } else {
         const customerNewInvoices = state.invoices.map((inv) => {
           if (
-            inv[customer._id] &&
+            inv[customer._id]?.length > 0 &&
             inv[customer._id][0].customer._id === customer._id
           ) {
             const filteredInvoicesOfCustomer = _.filter(
@@ -266,7 +266,7 @@ export const invoiceSlice = createSlice({
       } else {
         const customerNewInvoices = state.invoices.map((inv) => {
           if (
-            inv[customer._id] &&
+            inv[customer._id]?.length > 0 &&
             inv[customer._id][0].customer._id === customer._id
           ) {
             const filteredInvoicesOfCustomer = _.filter(
@@ -290,6 +290,52 @@ export const invoiceSlice = createSlice({
       data: PayloadAction<{ invoice: Invoice }>
     ) => {
       state.currentInvoice = data.payload.invoice;
+    },
+
+    updateInvoiceItemPriceFE: (
+      state,
+      data: PayloadAction<{
+        _id: string;
+        price: number;
+      }>
+    ) => {
+      const { _id, price } = data.payload;
+
+      if (!state.currentInvoice) {
+        return;
+      }
+
+      const carts = [...state.currentInvoice.invoiceItems];
+
+      const cartToUpdate = _.filter(carts, (cart) => {
+        return cart._id === _id;
+      })[0];
+
+      const indexOfTarget = _.indexOf(carts, cartToUpdate, 0);
+
+      const updatedCCart: CartItem = {
+        ...cartToUpdate,
+        unitPrice: price,
+        itemTotal: price * +cartToUpdate.quantity,
+      };
+
+      state.currentInvoice.invoiceItems[indexOfTarget] = updatedCCart;
+
+      let cartTotal = 0;
+      state.currentInvoice.invoiceItems.forEach((cart) => {
+        cartTotal += cart.itemTotal;
+      });
+
+      state.currentInvoice.subTotal =
+        cartTotal +
+        (state.currentInvoice.discount || 0) -
+        (state.currentInvoice.shippingCharge || 0);
+
+      state.currentInvoice.total =
+        cartTotal +
+        (state.currentInvoice.discount || 0) -
+        (state.currentInvoice.shippingCharge || 0) +
+        (state.currentInvoice.tax || 0);
     },
 
     updateInvoiceItemFE: (
@@ -424,6 +470,7 @@ export const invoiceSlice = createSlice({
 export const {
   addToCurrentInvoice,
   updateCurrentInvoice,
+  updateInvoiceItemPriceFE,
   deleteAllInvoices,
   addToCurrentInvoiceFE,
   updateInvoiceItemFE,

@@ -36,6 +36,7 @@ import {
 } from '../../../utils/functions';
 import ConfirmationDialog from '../../../components/Dialog/ConfirmationDialog';
 import { isLarge } from '../../../utils/utils';
+import { formatMoney } from './../../../utils/functions';
 
 const SingleInvoiceScreen: React.FC<SingleInvoiceScreensProps> = ({
   route,
@@ -304,7 +305,7 @@ const SingleInvoiceScreen: React.FC<SingleInvoiceScreensProps> = ({
                           flex: 0.7,
                           ...styles.cellCenter,
                         }}>
-                        ${invItem.unitPrice}
+                        ${(+invItem.unitPrice).toFixed(2)}
                       </DataTable.Cell>
 
                       <DataTable.Cell

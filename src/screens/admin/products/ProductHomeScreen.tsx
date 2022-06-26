@@ -77,7 +77,11 @@ const ProductHomeScreen: React.FC<ProductHomeScreensProps> = ({
 
     if (permission.granted) {
       try {
-        await RNFAFileSystem.cpExternal(backupDirFile, fileName, 'downloads');
+        await RNFAFileSystem.cpExternal(
+          backupDirFile,
+          `${fileName}.json`,
+          'downloads'
+        );
         Alert.alert(`Congratulations ${owner_name}! \nExport Success!.`);
       } catch (error) {
         console.log(error);

@@ -41,6 +41,7 @@ import {
   setCurrentPdfUri,
   updateCurrentInvoice,
   updateInvoiceItemFE,
+  updateInvoiceItemPriceFE,
 } from '../../../store/reducer/invoice';
 import { isLarge } from '../../../utils/utils';
 import { Dirs, FileSystem as RNFAFileSystem } from 'react-native-file-access';
@@ -58,6 +59,7 @@ const EditInvoiceScreen: React.FC<EditInvoiceScreensProps> = ({
   const [show, setShow] = useState(false);
   const [loading, setLoading] = React.useState(false);
   const [refresh, setRefresh] = useState(0);
+
   useEffect(() => {
     //code
   }, [refresh]);
@@ -116,7 +118,11 @@ const EditInvoiceScreen: React.FC<EditInvoiceScreensProps> = ({
 
     if (permission.granted) {
       try {
-        await RNFAFileSystem.cpExternal(backupDirFile, fileName, 'downloads');
+        await RNFAFileSystem.cpExternal(
+          backupDirFile,
+          `${fileName}.pdf`,
+          'downloads'
+        );
       } catch (error) {
         Alert.alert('Unknown Error Occured!');
       }
@@ -483,16 +489,40 @@ const EditInvoiceScreen: React.FC<EditInvoiceScreensProps> = ({
                         </View>
                       </View>
 
-                      <DataTable.Cell
-                        numeric
-                        centered
-                        textStyle={styles.cellTextStyle}
+                      <View
                         style={{
                           flex: 1,
                           ...styles.cellCenter,
+                          flexDirection: 'row',
+                          justifyContent: 'center',
+                          alignContent: 'center',
                         }}>
-                        ${(+invItem.unitPrice).toFixed(2)}
-                      </DataTable.Cell>
+                        <TextInput
+                          keyboardType='numeric'
+                          onChangeText={(prc: string) => {
+                            if (+prc >= 0) {
+                              dispatch(
+                                updateInvoiceItemPriceFE({
+                                  _id: invItem._id,
+                                  price: +prc,
+                                })
+                              );
+                            } else {
+                              Alert.alert(
+                                'Price can not be negative or string'
+                              );
+                            }
+                          }}
+                          style={{
+                            textAlign: 'center',
+                            fontFamily: FontNames.MyriadProBold,
+                            color: Colors.primaryColor,
+                            fontSize: isLarge ? 20 : 15,
+                            marginHorizontal: 5,
+                          }}>
+                          {+invItem.unitPrice}
+                        </TextInput>
+                      </View>
 
                       <DataTable.Cell
                         numeric

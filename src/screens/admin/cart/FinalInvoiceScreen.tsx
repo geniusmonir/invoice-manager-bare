@@ -32,6 +32,7 @@ import {
   Invoice,
   setCurrentPdfUri,
   updateCurrentInvoice,
+  updateInvoiceItemPriceFE,
 } from '../../../store/reducer/invoice';
 import {
   formatMoney,
@@ -107,7 +108,11 @@ const FinalInvoiceScreen: React.FC<FinalInvoiceScreensProps> = ({
 
     if (permission.granted) {
       try {
-        await RNFAFileSystem.cpExternal(backupDirFile, fileName, 'downloads');
+        await RNFAFileSystem.cpExternal(
+          backupDirFile,
+          `${fileName}.pdf`,
+          'downloads'
+        );
         Alert.alert(`Congratulations! \nPDF Saved Inside Downloads!.`);
       } catch (error) {
         Alert.alert('Unknown Error Occured!');
@@ -357,16 +362,40 @@ const FinalInvoiceScreen: React.FC<FinalInvoiceScreensProps> = ({
                         {ivi.quantity}
                       </DataTable.Cell>
 
-                      <DataTable.Cell
-                        numeric
-                        centered
-                        textStyle={styles.cellTextStyle}
+                      <View
                         style={{
                           flex: 0.7,
                           ...styles.cellCenter,
+                          flexDirection: 'row',
+                          justifyContent: 'center',
+                          alignContent: 'center',
                         }}>
-                        {formatMoney(String(ivi.unitPrice))}
-                      </DataTable.Cell>
+                        <TextInput
+                          keyboardType='numeric'
+                          onChangeText={(prc: string) => {
+                            if (+prc >= 0) {
+                              dispatch(
+                                updateInvoiceItemPriceFE({
+                                  _id: ivi._id,
+                                  price: +prc,
+                                })
+                              );
+                            } else {
+                              Alert.alert(
+                                'Price can not be negative or string'
+                              );
+                            }
+                          }}
+                          style={{
+                            textAlign: 'center',
+                            fontFamily: FontNames.MyriadProRegular,
+                            color: Colors.primaryColor,
+                            fontSize: isLarge ? 20 : 15,
+                            marginHorizontal: 5,
+                          }}>
+                          {+ivi.unitPrice}
+                        </TextInput>
+                      </View>
 
                       <DataTable.Cell
                         numeric
