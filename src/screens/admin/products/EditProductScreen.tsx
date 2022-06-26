@@ -267,7 +267,6 @@ const EditProductScreen: React.FC<EditProductScreensProps> = ({
       />
 
       <ConfirmationDialog
-        message='Are you sure about deleting your product?'
         setVisible={setIsDialogVisible}
         visible={isDialogVisible}
         submitAns={() => {

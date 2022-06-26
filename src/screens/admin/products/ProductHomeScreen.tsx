@@ -28,6 +28,7 @@ const { StorageAccessFramework } = FileSystem;
 import { isLarge } from '../../../utils/utils';
 import { Dirs, FileSystem as RNFAFileSystem } from 'react-native-file-access';
 import * as ScopedStorage from 'react-native-scoped-storage';
+import BackupRestoreDialogPr from '../../../components/Dialog/BackupRestoreDialogPr';
 
 const ProductHomeScreen: React.FC<ProductHomeScreensProps> = ({
   route,
@@ -96,7 +97,7 @@ const ProductHomeScreen: React.FC<ProductHomeScreensProps> = ({
       const jsonProduct = await FileSystem.readAsStringAsync(pickerResult.uri);
       const products = JSON.parse(jsonProduct);
 
-      if (!products[0].category) {
+      if (!products[0]?.category) {
         Alert.alert('Double check the JSON file for Products');
         return;
       }
@@ -162,7 +163,7 @@ const ProductHomeScreen: React.FC<ProductHomeScreensProps> = ({
           />
         </View>
 
-        <BackupRestoreDialog
+        <BackupRestoreDialogPr
           handleDelete={(owner_name: string) => {
             setTimeout(() => {
               dispatch(deleteAllProduct());

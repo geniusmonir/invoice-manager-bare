@@ -3,14 +3,11 @@ import { Alert, ScrollView, StyleSheet, View } from 'react-native';
 import { Text } from '@rneui/themed';
 import { AddCustomerTOScreensProps } from '../../../types/mainNavigatorTypes';
 import Colors from '../../../constants/Colors';
-import ProductListView from './../../../components/ListView/ProductListView';
 import FontNames from '../../../constants/FontNames';
 import { FAB } from 'react-native-paper';
 import { SearchBar } from '@rneui/themed';
 import { Icon } from 'react-native-elements';
 
-import { Dropdown } from 'react-native-element-dropdown';
-import AntDesign from 'react-native-vector-icons/AntDesign';
 import CustomerListView from '../../../components/ListView/CustomerListView';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../../store/store';

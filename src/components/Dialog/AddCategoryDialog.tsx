@@ -9,6 +9,7 @@ import { RootState } from '../../store/store';
 import { useSelector } from 'react-redux';
 import { getCategoryStr } from '../../utils/functions';
 import { isLarge } from '../../utils/utils';
+import ConfirmationDialog from './ConfirmationDialog';
 
 const AddCategoryDialog: React.FC<{
   visible: boolean;
@@ -18,6 +19,8 @@ const AddCategoryDialog: React.FC<{
   refresh?: number;
 }> = ({ visible, setVisible, submitCategory, deleteCategory, refresh = 0 }) => {
   const [category, setCategory] = React.useState('');
+  const [categoryToDel, setCategoryToDel] = React.useState('');
+  const [isDialogVisible, setIsDialogVisible] = useState(false);
 
   const { categories } = useSelector((state: RootState) => state.category);
 
@@ -90,7 +93,8 @@ const AddCategoryDialog: React.FC<{
                   marginBottom: isLarge ? 10 : 7,
                 }}
                 onClose={() => {
-                  deleteCategory(cat);
+                  setCategoryToDel(cat);
+                  setIsDialogVisible(true);
                 }}>
                 {getCategoryStr(cat)}
               </Chip>
@@ -114,6 +118,7 @@ const AddCategoryDialog: React.FC<{
         <Dialog.Input
           underlineColorAndroid={Colors.primaryColor}
           textInputRef={ref}
+          value={category}
           style={{
             width: '100%',
             minWidth: isLarge ? 500 : 350,
@@ -139,6 +144,15 @@ const AddCategoryDialog: React.FC<{
           }}
         />
       </Dialog.Container>
+
+      <ConfirmationDialog
+        setVisible={setIsDialogVisible}
+        visible={isDialogVisible}
+        submitAns={() => {
+          deleteCategory(categoryToDel);
+          setIsDialogVisible(false);
+        }}
+      />
     </View>
   );
 };

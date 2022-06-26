@@ -86,7 +86,7 @@ const CustomerHomeScreen: React.FC<CustomerHomeScreensProps> = ({
       const jsonCustomer = await FileSystem.readAsStringAsync(pickerResult.uri);
       const customers = JSON.parse(jsonCustomer);
 
-      if (!customers[0].business_name) {
+      if (!customers[0]?.business_name) {
         Alert.alert('Double check the JSON file for Customer');
         return;
       }

@@ -10,7 +10,6 @@ export interface CartItem {
 
   name: string;
   unitPrice: number | '';
-  discount: number | '';
   inStock: number | '';
 
   quantity: number | '';
@@ -51,10 +50,9 @@ export const cartSlice = createSlice({
         _id: string;
         dir: 'up' | 'down' | 'change';
         qty: number;
-        disc: number;
       }>
     ) => {
-      const { _id, qty, dir, disc } = data.payload;
+      const { _id, qty, dir } = data.payload;
       const carts = [...state.carts];
 
       const cartToUpdate = _.filter(carts, (cart) => {
@@ -67,8 +65,7 @@ export const cartSlice = createSlice({
         const updatedCCart = {
           ...cartToUpdate,
           quantity: qty,
-          discount: disc,
-          itemTotal: +cartToUpdate.unitPrice * qty - disc,
+          itemTotal: +cartToUpdate.unitPrice * qty,
         };
 
         state.carts[indexOfTarget] = updatedCCart;
@@ -88,8 +85,7 @@ export const cartSlice = createSlice({
       const updatedCart = {
         ...cartToUpdate,
         quantity: newQty,
-        discount: disc,
-        itemTotal: +cartToUpdate.unitPrice * newQty - disc,
+        itemTotal: +cartToUpdate.unitPrice * newQty,
       };
 
       state.carts[indexOfTarget] = updatedCart;

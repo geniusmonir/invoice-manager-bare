@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Button, StyleSheet, View } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { Button, StyleSheet, View, Text } from 'react-native';
 import Dialog from 'react-native-dialog';
 import Colors from '../../constants/Colors';
 import FontNames from '../../constants/FontNames';
@@ -12,6 +12,10 @@ const VerifyAdminDialog: React.FC<{
   loading?: boolean;
 }> = ({ visible, setVisible, submitPassword, loading = false }) => {
   const [password, setPassword] = React.useState('');
+
+  useEffect(() => {
+    setPassword('');
+  }, []);
 
   const handleCancel = () => {
     setVisible(false);
@@ -32,7 +36,7 @@ const VerifyAdminDialog: React.FC<{
         }}
         onBackdropPress={handleCancel}>
         <Dialog.Title style={styles.textStyle}>
-          {loading ? 'Please wait....' : 'Please Verify admin password'}
+          <Text style={styles.textStyle}>Please Verify admin password</Text>
         </Dialog.Title>
 
         <Dialog.Input
@@ -42,6 +46,7 @@ const VerifyAdminDialog: React.FC<{
             maxWidth: isLarge ? 200 : 155,
             ...styles.textStyle,
           }}
+          value={password}
           placeholder='Admin password'
           secureTextEntry
           onChangeText={(text) => setPassword(text)}></Dialog.Input>

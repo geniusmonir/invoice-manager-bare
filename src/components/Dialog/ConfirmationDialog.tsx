@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, StyleSheet, View } from 'react-native';
+import { Button, StyleSheet, View, Text } from 'react-native';
 import Dialog from 'react-native-dialog';
 import Colors from '../../constants/Colors';
 import FontNames from '../../constants/FontNames';
@@ -10,14 +10,7 @@ const ConfirmationDialog: React.FC<{
   setVisible: (command: boolean) => void;
   submitAns: () => void;
   loading?: boolean;
-  message?: string;
-}> = ({
-  visible,
-  setVisible,
-  submitAns,
-  loading = false,
-  message = 'Are you sure you to save changes?',
-}) => {
+}> = ({ visible, setVisible, submitAns, loading = false }) => {
   const handleCancel = () => {
     setVisible(false);
   };
@@ -36,7 +29,9 @@ const ConfirmationDialog: React.FC<{
           borderTopStartRadius: 30,
         }}
         onBackdropPress={handleCancel}>
-        <Dialog.Title style={styles.textStyle}>{message}</Dialog.Title>
+        <Dialog.Title style={styles.textStyle}>
+          <Text style={styles.textStyle}>Are you sure?</Text>
+        </Dialog.Title>
 
         <Dialog.Button
           style={styles.textStyle}

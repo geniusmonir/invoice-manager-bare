@@ -120,18 +120,6 @@ const ProductListView: React.FC<{
                 IN STOCK: {l.inStock} {'   '}
               </ListItem.Subtitle>
 
-              {Boolean(l.discount && l.discount > 0) && (
-                <ListItem.Subtitle
-                  style={{
-                    fontFamily: FontNames.MyriadProRegular,
-                    color: Colors.primaryColor,
-                    fontSize: isLarge ? 20 : 15,
-                    width: '100%',
-                  }}>
-                  DISCOUNT: ${l.discount || 0}
-                </ListItem.Subtitle>
-              )}
-
               <ListItem.Subtitle
                 style={{
                   fontFamily: FontNames.MyriadProRegular,

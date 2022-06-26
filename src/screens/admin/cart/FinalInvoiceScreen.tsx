@@ -315,15 +315,6 @@ const FinalInvoiceScreen: React.FC<FinalInvoiceScreensProps> = ({
                   <DataTable.Title
                     numeric
                     style={{
-                      flex: 0.7,
-                      ...styles.cellCenter,
-                    }}>
-                    <DTHeaderTitle title='Disc.' />
-                  </DataTable.Title>
-
-                  <DataTable.Title
-                    numeric
-                    style={{
                       flex: 1,
                       ...styles.cellCenter,
                     }}>
@@ -375,17 +366,6 @@ const FinalInvoiceScreen: React.FC<FinalInvoiceScreensProps> = ({
                           ...styles.cellCenter,
                         }}>
                         {formatMoney(String(ivi.unitPrice))}
-                      </DataTable.Cell>
-
-                      <DataTable.Cell
-                        numeric
-                        centered
-                        textStyle={styles.cellTextStyle}
-                        style={{
-                          flex: 0.7,
-                          ...styles.cellCenter,
-                        }}>
-                        {formatMoney(String(ivi.discount))}
                       </DataTable.Cell>
 
                       <DataTable.Cell

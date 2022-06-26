@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, Alert } from 'react-native';
+import { StyleSheet, View, Alert, Text } from 'react-native';
 import Dialog from 'react-native-dialog';
 import Colors from '../../constants/Colors';
 import FontNames from '../../constants/FontNames';
@@ -17,12 +17,15 @@ import { getCategoryStr, setCategoryStr } from '../../utils/functions';
 import { deleteAllInvoices, importInvoice } from '../../store/reducer/invoice';
 import { isLarge } from '../../utils/utils';
 import { Dirs, FileSystem as RNFAFileSystem } from 'react-native-file-access';
+import ConfirmationDialog from './ConfirmationDialog';
 
 const AdminSettingsDialog: React.FC<{
   visible: boolean;
   setVisible: (command: boolean) => void;
 }> = ({ visible, setVisible }) => {
   const dispatch = useDispatch();
+
+  const [isDialogVisible, setIsDialogVisible] = useState(false);
   const [isCatVisible, setIsCatVisible] = useState(false);
   const [isExporting, setIsExporting] = useState(false);
   const [isImporting, setIsImporting] = useState(false);
@@ -84,14 +87,18 @@ const AdminSettingsDialog: React.FC<{
       const jsonInvoices = await FileSystem.readAsStringAsync(pickerResult.uri);
       const invoices = JSON.parse(jsonInvoices);
 
-      if (!invoices[0][Object.keys(invoices[0])[0]][0].invoiceNumber) {
+      try {
+        if (!invoices[0][Object.keys(invoices[0])[0]][0].invoiceNumber) {
+          Alert.alert('Double check the JSON file for Invoice');
+          return;
+        }
+
+        dispatch(importInvoice({ invoices }));
+
+        Alert.alert(`Congratulations ${owner_name}! \nImport Success!`);
+      } catch (error) {
         Alert.alert('Double check the JSON file for Invoice');
-        return;
       }
-
-      dispatch(importInvoice({ invoices }));
-
-      Alert.alert(`Congratulations ${owner_name}! \nImport Success!`);
     } else {
       Alert.alert('You have to pick JSON file to import Invoices');
     }
@@ -101,7 +108,7 @@ const AdminSettingsDialog: React.FC<{
     <View>
       <Dialog.Container
         contentStyle={{
-          width: 500,
+          width: 520,
           alignContent: 'center',
           justifyContent: 'center',
           alignItems: 'center',
@@ -118,7 +125,16 @@ const AdminSettingsDialog: React.FC<{
             letterSpacing: 3,
             marginBottom: isLarge ? 30 : 24,
           }}>
-          {'MANAGE INVOICES / MORE '}
+          <Text
+            style={{
+              ...styles.textStyle,
+              fontSize: isLarge ? 25 : 18,
+              fontFamily: FontNames.MyriadProBold,
+              letterSpacing: 3,
+              marginBottom: isLarge ? 30 : 24,
+            }}>
+            MANAGE INVOICES / MORE
+          </Text>
         </Dialog.Title>
 
         <View
@@ -149,7 +165,7 @@ const AdminSettingsDialog: React.FC<{
                 setIsExporting(false);
               }, 500);
             }}>
-            EXPORT JSON
+            EXPORT INVOICES
           </Button>
 
           <Button
@@ -173,7 +189,7 @@ const AdminSettingsDialog: React.FC<{
                 setIsImporting(false);
               }, 500);
             }}>
-            IMPORT JSON
+            IMPORT INVOICES
           </Button>
         </View>
 
@@ -199,16 +215,9 @@ const AdminSettingsDialog: React.FC<{
             loading={isDeleting}
             color={Colors.xplight}
             onPress={() => {
-              setIsDeleting(true);
-              setTimeout(() => {
-                setIsDeleting(false);
-                dispatch(deleteAllInvoices());
-                Alert.alert(
-                  `Hey ${owner_name}, You have successfully deleted all invoices.`
-                );
-              }, 500);
+              setIsDialogVisible(true);
             }}>
-            DELETE ALL
+            DELETE INVOICES
           </Button>
 
           <Button
@@ -259,6 +268,22 @@ const AdminSettingsDialog: React.FC<{
           }}
         />
       </Dialog.Container>
+
+      <ConfirmationDialog
+        setVisible={setIsDialogVisible}
+        visible={isDialogVisible}
+        submitAns={() => {
+          setIsDeleting(true);
+          setTimeout(() => {
+            setIsDeleting(false);
+            dispatch(deleteAllInvoices());
+            Alert.alert(
+              `Hey ${owner_name}, You have successfully deleted all invoices.`
+            );
+            setIsDialogVisible(false);
+          }, 500);
+        }}
+      />
     </View>
   );
 };

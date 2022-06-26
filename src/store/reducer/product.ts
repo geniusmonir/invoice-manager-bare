@@ -12,7 +12,6 @@ export interface Product {
   unitPrice: number | '';
   inStock: number | '';
 
-  discount?: number | '';
   description?: string;
   notes?: string;
   isShown: boolean;
@@ -71,8 +70,7 @@ export const productSlice = createSlice({
         const updatedCProduct = {
           ...productToUpdate,
           quantity: qty,
-          itemTotal:
-            +productToUpdate.unitPrice * qty - (productToUpdate.discount || 0),
+          itemTotal: +productToUpdate.unitPrice * qty,
         };
 
         state.products[indexOfTarget] = updatedCProduct;
@@ -84,8 +82,7 @@ export const productSlice = createSlice({
       const updatedProduct = {
         ...productToUpdate,
         quantity: newQty,
-        itemTotal:
-          +productToUpdate.unitPrice * newQty - (productToUpdate.discount || 0),
+        itemTotal: +productToUpdate.unitPrice * newQty,
       };
 
       state.products[indexOfTarget] = updatedProduct;

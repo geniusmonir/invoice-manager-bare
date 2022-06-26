@@ -8,6 +8,7 @@ import { Button } from 'react-native-paper';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
 import { isLarge } from '../../utils/utils';
+import ConfirmationDialog from './ConfirmationDialog';
 
 const BackupRestoreDialog: React.FC<{
   visible: boolean;
@@ -25,6 +26,7 @@ const BackupRestoreDialog: React.FC<{
   handleImport,
 }) => {
   const dispatch = useDispatch();
+  const [isDialogVisible, setIsDialogVisible] = useState(false);
 
   const { owner_name } = useSelector((state: RootState) => state.settings);
 
@@ -40,7 +42,7 @@ const BackupRestoreDialog: React.FC<{
     <View>
       <Dialog.Container
         contentStyle={{
-          width: 500,
+          width: 530,
           alignContent: 'center',
           justifyContent: 'center',
           alignItems: 'center',
@@ -89,7 +91,7 @@ const BackupRestoreDialog: React.FC<{
                 handleExport(owner_name);
               }, 500);
             }}>
-            EXPORT JSON
+            EXPORT CUSTOMER
           </Button>
 
           <Button
@@ -113,7 +115,7 @@ const BackupRestoreDialog: React.FC<{
                 handleImport(owner_name);
               }, 500);
             }}>
-            IMPORT JSON
+            IMPORT CUSTOMER
           </Button>
         </View>
 
@@ -133,13 +135,9 @@ const BackupRestoreDialog: React.FC<{
             loading={isDeleting}
             color={Colors.xplight}
             onPress={() => {
-              setIsDeleting(true);
-              setTimeout(() => {
-                setIsDeleting(false);
-                handleDelete(owner_name);
-              }, 500);
+              setIsDialogVisible(true);
             }}>
-            DELETE ALL
+            DELETE ALL CUSTOMER
           </Button>
         </View>
 
@@ -148,6 +146,19 @@ const BackupRestoreDialog: React.FC<{
           color={Colors.accentColor}
           label='Cancel'
           onPress={handleCancel}
+        />
+
+        <ConfirmationDialog
+          setVisible={setIsDialogVisible}
+          visible={isDialogVisible}
+          submitAns={() => {
+            setIsDeleting(true);
+            setTimeout(() => {
+              setIsDeleting(false);
+              handleDelete(owner_name);
+              setIsDialogVisible(false);
+            }, 500);
+          }}
         />
       </Dialog.Container>
     </View>

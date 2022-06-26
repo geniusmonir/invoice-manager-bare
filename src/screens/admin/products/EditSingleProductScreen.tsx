@@ -36,7 +36,6 @@ interface SUFormValues {
   unitPrice: number | '';
   inStock: number | '';
 
-  discount?: number | '';
   description?: string;
   notes?: string;
 }
@@ -61,7 +60,6 @@ const AFValidationSchema = Yup.object().shape({
     .required('Unit Price is Required')
     .label('InStock'),
 
-  discount: Yup.number().optional().default(0).label('Discount'),
   description: Yup.string().optional().label('Description'),
   notes: Yup.string().optional().label('Notes'),
 });
@@ -84,12 +82,10 @@ const EditSingleProductScreen: React.FC<EditSingleProductScreensProps> = ({
     inStock,
     unitPrice,
     description,
-    discount,
     notes,
   } = products;
 
   const unitPriceInputRef = React.useRef<RNTextInput>(null);
-  const discountInputRef = React.useRef<RNTextInput>(null);
   const inStockInputRef = React.useRef<RNTextInput>(null);
   const descriptionInputRef = React.useRef<RNTextInput>(null);
   const notesInputRef = React.useRef<RNTextInput>(null);
@@ -103,7 +99,6 @@ const EditSingleProductScreen: React.FC<EditSingleProductScreensProps> = ({
     name,
     unitPrice,
     inStock,
-    discount,
     description,
     notes,
   };
@@ -123,10 +118,9 @@ const EditSingleProductScreen: React.FC<EditSingleProductScreensProps> = ({
             ...values,
             _id,
             createdAt,
-            category: category,
+            category: category || 'others',
             image: isImage,
             isShown: !isHidden,
-            discount: values.discount || 0,
           },
         })
       );
@@ -354,40 +348,12 @@ const EditSingleProductScreen: React.FC<EditSingleProductScreensProps> = ({
                     returnKeyLabel='Next'
                     ref={inStockInputRef}
                     onSubmitEditing={() => {
-                      discountInputRef.current?.focus();
+                      descriptionInputRef.current?.focus();
                     }}
                   />
 
                   {errors.inStock && touched.inStock && (
                     <Text style={styles.redColorText}>{errors.inStock}</Text>
-                  )}
-                </View>
-
-                <View
-                  style={{
-                    marginBottom: isLarge ? 16 : 10,
-                    width: '100%',
-                  }}>
-                  <TextInput
-                    icon='megaphone-outline'
-                    error={errors.discount}
-                    touched={touched.discount}
-                    placeholder='Product discount'
-                    keyboardType='number-pad'
-                    onChangeText={handleChange('discount')}
-                    onBlur={handleBlur('discount')}
-                    value={values.discount + ''}
-                    autoCapitalize='none'
-                    returnKeyType='next'
-                    returnKeyLabel='Next'
-                    ref={discountInputRef}
-                    onSubmitEditing={() => {
-                      descriptionInputRef.current?.focus();
-                    }}
-                  />
-
-                  {errors.discount && touched.discount && (
-                    <Text style={styles.redColorText}>{errors.discount}</Text>
                   )}
                 </View>
 

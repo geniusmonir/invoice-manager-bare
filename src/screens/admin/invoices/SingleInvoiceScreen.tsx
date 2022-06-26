@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import {
-  Alert,
   Keyboard,
   KeyboardAvoidingView,
   SafeAreaView,
@@ -13,14 +12,11 @@ import {
 import { Text } from '@rneui/themed';
 import { SingleInvoiceScreensProps } from '../../../types/mainNavigatorTypes';
 import Colors from '../../../constants/Colors';
-import { globalStyles } from '../../../styles/globalStyle';
 import FontNames from '../../../constants/FontNames';
 import { DataTable } from 'react-native-paper';
 import DTHeaderTitle from '../../../components/DataTable/DTHeaderText';
 import { FAB } from 'react-native-paper';
-import { Icon } from 'react-native-elements';
 import { Dropdown } from 'react-native-element-dropdown';
-import AntDesign from 'react-native-vector-icons/AntDesign';
 import moment from 'moment';
 import {
   addToCurrentInvoiceFE,
@@ -31,8 +27,6 @@ import {
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../../store/store';
 import * as FileSystem from 'expo-file-system';
-import * as MediaLibrary from 'expo-media-library';
-import * as DocumentPicker from 'expo-document-picker';
 
 import { shareAsync } from 'expo-sharing';
 import * as Print from 'expo-print';
@@ -260,15 +254,6 @@ const SingleInvoiceScreen: React.FC<SingleInvoiceScreensProps> = ({
                   <DataTable.Title
                     numeric
                     style={{
-                      flex: 0.7,
-                      ...styles.cellCenter,
-                    }}>
-                    <DTHeaderTitle title='Disc.' />
-                  </DataTable.Title>
-
-                  <DataTable.Title
-                    numeric
-                    style={{
                       flex: 1,
                       ...styles.cellCenter,
                     }}>
@@ -320,17 +305,6 @@ const SingleInvoiceScreen: React.FC<SingleInvoiceScreensProps> = ({
                           ...styles.cellCenter,
                         }}>
                         ${invItem.unitPrice}
-                      </DataTable.Cell>
-
-                      <DataTable.Cell
-                        numeric
-                        centered
-                        textStyle={styles.cellTextStyle}
-                        style={{
-                          flex: 0.7,
-                          ...styles.cellCenter,
-                        }}>
-                        ${(+invItem.discount).toFixed(2)}
                       </DataTable.Cell>
 
                       <DataTable.Cell
@@ -641,7 +615,6 @@ const SingleInvoiceScreen: React.FC<SingleInvoiceScreensProps> = ({
 
           <ConfirmationDialog
             setVisible={setIsDialogVisible}
-            message='Are you sure about deleting this invoice?'
             visible={isDialogVisible}
             submitAns={() => {
               dispatch(clearCurrentInvoice());

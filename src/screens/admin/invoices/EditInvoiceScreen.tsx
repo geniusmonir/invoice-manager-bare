@@ -347,15 +347,6 @@ const EditInvoiceScreen: React.FC<EditInvoiceScreensProps> = ({
                   <DataTable.Title
                     numeric
                     style={{
-                      flex: 0.7,
-                      ...styles.cellCenter,
-                    }}>
-                    <DTHeaderTitle title='Disc.' />
-                  </DataTable.Title>
-
-                  <DataTable.Title
-                    numeric
-                    style={{
                       flex: 1,
                       ...styles.cellCenter,
                     }}>
@@ -401,16 +392,6 @@ const EditInvoiceScreen: React.FC<EditInvoiceScreensProps> = ({
                             color={Colors.primaryColor}
                             type='material-community'
                             onPress={() => {
-                              if (
-                                invItem.itemTotal <= +invItem.discount &&
-                                invItem.itemTotal > 0
-                              ) {
-                                Alert.alert(
-                                  'Please decrease the discount first'
-                                );
-                                return;
-                              }
-
                               if (invItem.quantity == 0) {
                                 dispatch(
                                   deleteInvoiceItemFE({ _id: invItem._id })
@@ -429,7 +410,6 @@ const EditInvoiceScreen: React.FC<EditInvoiceScreensProps> = ({
                                 updateInvoiceItemFE({
                                   _id: invItem._id,
                                   dir: 'down',
-                                  disc: invItem.discount || 0,
                                   qty: invItem.quantity || 0,
                                 })
                               );
@@ -451,7 +431,6 @@ const EditInvoiceScreen: React.FC<EditInvoiceScreensProps> = ({
                                     _id: invItem._id,
                                     dir: 'change',
                                     qty: +invItem.inStock,
-                                    disc: +invItem.discount,
                                   })
                                 );
                                 Alert.alert('You are out of stock.');
@@ -462,7 +441,6 @@ const EditInvoiceScreen: React.FC<EditInvoiceScreensProps> = ({
                                   _id: invItem._id,
                                   dir: 'change',
                                   qty: +tQty,
-                                  disc: +invItem.discount,
                                 })
                               );
                             }}
@@ -497,7 +475,6 @@ const EditInvoiceScreen: React.FC<EditInvoiceScreensProps> = ({
                                 updateInvoiceItemFE({
                                   _id: invItem._id,
                                   dir: 'up',
-                                  disc: invItem.discount || 0,
                                   qty: invItem.quantity || 0,
                                 })
                               );
@@ -516,47 +493,6 @@ const EditInvoiceScreen: React.FC<EditInvoiceScreensProps> = ({
                         }}>
                         ${(+invItem.unitPrice).toFixed(2)}
                       </DataTable.Cell>
-
-                      <View
-                        style={{
-                          flex: 0.7,
-                          ...styles.cellCenter,
-                        }}>
-                        <TextInput
-                          keyboardType='numeric'
-                          onChangeText={(dAmnt: string) => {
-                            if (+dAmnt > invItem.itemTotal) {
-                              dispatch(
-                                updateInvoiceItemFE({
-                                  _id: invItem._id,
-                                  dir: 'change',
-                                  qty: +invItem.quantity,
-                                  disc: +invItem.itemTotal,
-                                })
-                              );
-                              Alert.alert(
-                                'Discount should be lower or equal than total'
-                              );
-                              return;
-                            }
-                            dispatch(
-                              updateInvoiceItemFE({
-                                _id: invItem._id,
-                                dir: 'change',
-                                qty: +invItem.quantity,
-                                disc: +dAmnt,
-                              })
-                            );
-                          }}
-                          style={{
-                            textAlign: 'center',
-                            fontFamily: FontNames.MyriadProRegular,
-                            color: Colors.primaryColor,
-                            fontSize: isLarge ? 20 : 15,
-                          }}>
-                          {invItem.discount || 0}
-                        </TextInput>
-                      </View>
 
                       <DataTable.Cell
                         numeric

@@ -95,7 +95,7 @@ export const invoiceSlice = createSlice({
       let customerInvoices: Invoice[] | [] = [];
 
       const customerInvoicesArr = _.filter(state.invoices, (c) => {
-        return c[customer._id]
+        return c[customer._id]?.length > 0
           ? c[customer._id][0].customer._id === customer._id
           : false;
       });
@@ -182,7 +182,7 @@ export const invoiceSlice = createSlice({
       const { customer } = data.payload.invoice;
 
       const customerInvoices = _.filter(state.invoices, (c) => {
-        return c[customer._id]
+        return c[customer._id]?.length > 0
           ? c[customer._id][0].customer._id === customer._id
           : false;
       });
@@ -214,7 +214,7 @@ export const invoiceSlice = createSlice({
       const { customer, _id } = data.payload.invoice;
 
       const customerInvoices = _.filter(state.invoices, (c) => {
-        return c[customer._id]
+        return c[customer._id]?.length > 0
           ? c[customer._id][0].customer._id === customer._id
           : false;
       });
@@ -256,7 +256,7 @@ export const invoiceSlice = createSlice({
       const { customer, _id } = data.payload.invoice;
 
       const customerInvoices = _.filter(state.invoices, (c) => {
-        return c[customer._id]
+        return c[customer._id]?.length > 0
           ? c[customer._id][0].customer._id === customer._id
           : false;
       });
@@ -298,10 +298,9 @@ export const invoiceSlice = createSlice({
         _id: string;
         dir: 'up' | 'down' | 'change';
         qty: number;
-        disc: number;
       }>
     ) => {
-      const { _id, qty, dir, disc } = data.payload;
+      const { _id, qty, dir } = data.payload;
 
       if (!state.currentInvoice) {
         return;
@@ -319,11 +318,8 @@ export const invoiceSlice = createSlice({
         const updatedCCart = {
           ...cartToUpdate,
           quantity: qty,
-          discount: disc,
-          itemTotal: +cartToUpdate.unitPrice * qty - disc,
+          itemTotal: +cartToUpdate.unitPrice * qty,
         };
-
-        updatedCCart.discount = updatedCCart.quantity === 0 ? 0 : disc;
 
         state.currentInvoice.invoiceItems[indexOfTarget] = updatedCCart;
 
@@ -351,11 +347,9 @@ export const invoiceSlice = createSlice({
       const updatedCart = {
         ...cartToUpdate,
         quantity: newQty,
-        discount: disc,
-        itemTotal: +cartToUpdate.unitPrice * newQty - disc,
+        itemTotal: +cartToUpdate.unitPrice * newQty,
       };
 
-      updatedCart.discount = updatedCart.quantity === 0 ? 0 : disc;
       updatedCart.itemTotal =
         updatedCart.quantity === 0 ? 0 : updatedCart.itemTotal;
 

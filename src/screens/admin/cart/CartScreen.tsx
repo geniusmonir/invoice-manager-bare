@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Alert,
   Keyboard,
@@ -23,12 +23,15 @@ import { RootState } from '../../../store/store';
 import { useSelector, useDispatch } from 'react-redux';
 import { deleteCart, updateCart } from '../../../store/reducer/cart';
 import { isLarge } from '../../../utils/utils';
+import ConfirmationDialog from '../../../components/Dialog/ConfirmationDialog';
 
 const CartScreen: React.FC<CartScreensProps> = ({
   route,
   navigation,
 }: CartScreensProps) => {
   const { carts, cartTotal } = useSelector((state: RootState) => state.cart);
+  const [isDialogVisible, setIsDialogVisible] = useState(false);
+  const [curCartId, setCurCartId] = useState('');
 
   const dispatch = useDispatch();
 
@@ -111,15 +114,6 @@ const CartScreen: React.FC<CartScreensProps> = ({
                 <DataTable.Title
                   numeric
                   style={{
-                    flex: 0.7,
-                    ...styles.cellCenter,
-                  }}>
-                  <DTHeaderTitle title='Disc.' />
-                </DataTable.Title>
-
-                <DataTable.Title
-                  numeric
-                  style={{
                     flex: 1,
                     ...styles.cellCenter,
                   }}>
@@ -180,7 +174,6 @@ const CartScreen: React.FC<CartScreensProps> = ({
                                   updateCart({
                                     _id: c._id,
                                     dir: 'up',
-                                    disc: c.discount || 0,
                                     qty: c.quantity || 0,
                                   })
                                 );
@@ -194,7 +187,6 @@ const CartScreen: React.FC<CartScreensProps> = ({
                                 updateCart({
                                   _id: c._id,
                                   dir: 'down',
-                                  disc: c.discount || 0,
                                   qty: c.quantity || 0,
                                 })
                               );
@@ -216,7 +208,6 @@ const CartScreen: React.FC<CartScreensProps> = ({
                                     _id: c._id,
                                     dir: 'change',
                                     qty: +c.inStock,
-                                    disc: +c.discount,
                                   })
                                 );
                                 Alert.alert('You are out of stock.');
@@ -227,7 +218,6 @@ const CartScreen: React.FC<CartScreensProps> = ({
                                   _id: c._id,
                                   dir: 'change',
                                   qty: +tQty,
-                                  disc: +c.discount,
                                 })
                               );
                             }}
@@ -259,7 +249,6 @@ const CartScreen: React.FC<CartScreensProps> = ({
                                 updateCart({
                                   _id: c._id,
                                   dir: 'up',
-                                  disc: c.discount || 0,
                                   qty: c.quantity || 0,
                                 })
                               );
@@ -278,47 +267,6 @@ const CartScreen: React.FC<CartScreensProps> = ({
                         }}>
                         ${c.unitPrice}
                       </DataTable.Cell>
-
-                      <View
-                        style={{
-                          flex: 0.7,
-                          ...styles.cellCenter,
-                        }}>
-                        <TextInput
-                          keyboardType='numeric'
-                          onChangeText={(dAmnt: string) => {
-                            if (+dAmnt > c.itemTotal) {
-                              dispatch(
-                                updateCart({
-                                  _id: c._id,
-                                  dir: 'change',
-                                  qty: +c.quantity,
-                                  disc: +c.itemTotal,
-                                })
-                              );
-                              Alert.alert(
-                                'Discount should be lower or equal than total'
-                              );
-                              return;
-                            }
-                            dispatch(
-                              updateCart({
-                                _id: c._id,
-                                dir: 'change',
-                                qty: +c.quantity,
-                                disc: +dAmnt,
-                              })
-                            );
-                          }}
-                          style={{
-                            textAlign: 'center',
-                            fontFamily: FontNames.MyriadProRegular,
-                            color: Colors.primaryColor,
-                            fontSize: isLarge ? 20 : 15,
-                          }}>
-                          {c.discount || 0}
-                        </TextInput>
-                      </View>
 
                       <DataTable.Cell
                         numeric
@@ -346,8 +294,8 @@ const CartScreen: React.FC<CartScreensProps> = ({
                           color={Colors.primaryColor}
                           type='material-community'
                           onPress={() => {
-                            dispatch(deleteCart({ _id: c._id }));
-                            Alert.alert('Item deleted successfully.');
+                            setCurCartId(c._id);
+                            setIsDialogVisible(true);
                           }}
                         />
                       </DataTable.Cell>
@@ -384,6 +332,16 @@ const CartScreen: React.FC<CartScreensProps> = ({
                 </Text>
               </View>
             </DataTable>
+
+            <ConfirmationDialog
+              setVisible={setIsDialogVisible}
+              visible={isDialogVisible}
+              submitAns={() => {
+                dispatch(deleteCart({ _id: curCartId }));
+                Alert.alert('Item deleted successfully.');
+                setIsDialogVisible(false);
+              }}
+            />
           </View>
         </ScrollView>
       )}
