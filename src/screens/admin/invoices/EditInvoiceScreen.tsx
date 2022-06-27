@@ -515,7 +515,7 @@ const EditInvoiceScreen: React.FC<EditInvoiceScreensProps> = ({
                           }}
                           style={{
                             textAlign: 'center',
-                            fontFamily: FontNames.MyriadProBold,
+                            fontFamily: FontNames.MyriadProRegular,
                             color: Colors.primaryColor,
                             fontSize: isLarge ? 20 : 15,
                             marginHorizontal: 5,

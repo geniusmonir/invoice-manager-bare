@@ -29,9 +29,9 @@ const ConfirmationDialog: React.FC<{
           borderTopStartRadius: 30,
         }}
         onBackdropPress={handleCancel}>
-        <Dialog.Title style={styles.textStyle}>
+        <View style={{ marginLeft: 10, marginBottom: 30 }}>
           <Text style={styles.textStyle}>Are you sure?</Text>
-        </Dialog.Title>
+        </View>
 
         <Dialog.Button
           style={styles.textStyle}

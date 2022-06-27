@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Button, StyleSheet, View, Text } from 'react-native';
+import { Button, StyleSheet, View, Text, TextInput } from 'react-native';
 import Dialog from 'react-native-dialog';
 import Colors from '../../constants/Colors';
 import FontNames from '../../constants/FontNames';
@@ -35,21 +35,25 @@ const VerifyAdminDialog: React.FC<{
           borderTopStartRadius: 30,
         }}
         onBackdropPress={handleCancel}>
-        <Dialog.Title style={styles.textStyle}>
+        <View style={{ marginLeft: 10, marginBottom: 30 }}>
           <Text style={styles.textStyle}>Please Verify admin password</Text>
-        </Dialog.Title>
+        </View>
 
-        <Dialog.Input
-          underlineColorAndroid={Colors.primaryColor}
-          style={{
-            width: '100%',
-            maxWidth: isLarge ? 200 : 155,
-            ...styles.textStyle,
-          }}
-          value={password}
-          placeholder='Admin password'
-          secureTextEntry
-          onChangeText={(text) => setPassword(text)}></Dialog.Input>
+        <View style={{ marginLeft: 10, marginBottom: 20 }}>
+          <TextInput
+            underlineColorAndroid={Colors.primaryColor}
+            style={{
+              width: '100%',
+              maxWidth: isLarge ? 300 : 200,
+              ...styles.textStyle,
+              padding: 10,
+            }}
+            placeholder='Admin password'
+            value={password}
+            onChangeText={(text) => setPassword(text)}
+            secureTextEntry={true}
+          />
+        </View>
 
         <Dialog.Button
           style={styles.textStyle}
