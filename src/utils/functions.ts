@@ -149,7 +149,7 @@ export const getInvoiceHTML = (curInv: Invoice, settings: SettingsState) => {
 
             td,
             th {
-                border: 0.5px solid #ddd;
+                border: 1px solid #000;
                 text-align: left;
                 padding: 8px;
                 font-family: 'Courier New', Courier, monospace;
@@ -179,11 +179,7 @@ export const getInvoiceHTML = (curInv: Invoice, settings: SettingsState) => {
                 ${
                   hideFromInvoice
                     ? ``
-                    : `<img
-                      src="data:image/jpeg;base64,${logo}"
-                      width='120'
-                      height='120'
-                      alt='Logo'></img>`
+                    : `<img src="data:image/jpeg;base64,${logo}" width='120' height='120' alt='Logo'></img>`
                 }
             </div>
         </div>
@@ -193,7 +189,7 @@ export const getInvoiceHTML = (curInv: Invoice, settings: SettingsState) => {
         <div class="billto_info">
             <div class="reciever_info">
                 <h2>BILL TO</h2>
-                <p>${curInv.customer.business_name}</p>
+                <h2>${curInv.customer.business_name}</h2>
                 <p>${curInv.customer.address}</p>
 
                 <br>
@@ -235,20 +231,18 @@ export const getInvoiceHTML = (curInv: Invoice, settings: SettingsState) => {
                     ${curInv.invoiceItems
                       .map((inv, i) => {
                         return `
-                          <tr>
-                            <td style="text-align: left;">${i + 1}. ${
-                          inv.name
-                        }</td>
-                            <td>${inv.quantity}</td>
-                            <td>$${inv.unitPrice}</td>
-                            <td style="text-align: right;">$${inv.itemTotal.toFixed(
-                              2
-                            )}</td>
-                        </tr>
-                        `;
+                    <tr>
+                        <td style="text-align: left;">${i + 1}. ${inv.name}</td>
+                        <td>${inv.quantity}</td>
+                        <td>$${inv.unitPrice}</td>
+                        <td style="text-align: right;">$${inv.itemTotal.toFixed(
+                          2
+                        )}</td>
+                    </tr>
+                    `;
                       })
                       .join(' ')}
-                    
+
                     <tr style="background-color: white;">
                         <td colspan="3" style="text-align: right; border: none;">Discount</td>
                         <td style="text-align: right;">$${

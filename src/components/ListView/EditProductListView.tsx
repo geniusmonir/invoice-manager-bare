@@ -1,5 +1,12 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image, Alert } from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  Alert,
+  TouchableOpacity,
+} from 'react-native';
 import { ListItem, Avatar as RNEAvatar } from 'react-native-elements';
 import { Icon } from 'react-native-elements';
 import Colors from '../../constants/Colors';
@@ -29,9 +36,7 @@ const EditProductListView: React.FC<{
       {products.map((l: Product) => {
         return (
           <ListItem
-            onPress={() => {
-              viewImage(l.image);
-            }}
+            onPress={() => {}}
             containerStyle={{
               borderRadius: 4,
               borderBottomEndRadius: 30,
@@ -52,22 +57,28 @@ const EditProductListView: React.FC<{
               marginVertical: 5,
               borderRadius: 4,
             }}>
-            <Image
-              //source={require(`../../../files/amr/pics/honey.jpg`)}
-              source={{ uri: `data:image/jpeg;base64,${l.image}` }}
-              height={isLarge ? 150 : 117}
-              width={isLarge ? 150 : 117}
-              style={{
-                alignContent: 'center',
-                alignItems: 'center',
-                justifyContent: 'center',
-                backgroundColor: Colors.primaryColor,
-                borderRadius: 4,
-                height: isLarge ? 150 : 117,
-                width: isLarge ? 150 : 117,
-                borderTopLeftRadius: 20,
-              }}
-            />
+            <TouchableOpacity
+              activeOpacity={0.9}
+              onPress={() => {
+                viewImage(l.image);
+              }}>
+              <Image
+                //source={require(`../../../files/amr/pics/honey.jpg`)}
+                source={{ uri: `data:image/jpeg;base64,${l.image}` }}
+                height={isLarge ? 150 : 117}
+                width={isLarge ? 150 : 117}
+                style={{
+                  alignContent: 'center',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  backgroundColor: Colors.primaryColor,
+                  borderRadius: 4,
+                  height: isLarge ? 150 : 117,
+                  width: isLarge ? 150 : 117,
+                  borderTopLeftRadius: 20,
+                }}
+              />
+            </TouchableOpacity>
 
             <ListItem.Content
               style={{

@@ -60,7 +60,6 @@ const AllProductScreen: React.FC<AllProductsScreensProps> = ({
     const cartItem: CartItem = {
       _id,
       createdAt,
-      discount: i.discount || 0,
       inStock: i.inStock,
       itemId: i._id,
       itemTotal: i.itemTotal || 0,
@@ -84,7 +83,7 @@ const AllProductScreen: React.FC<AllProductsScreensProps> = ({
 
   let searchedProductsArr = products.filter((p) => {
     const regExp = new RegExp(`(${search})\\w*`, 'gi');
-    if (p.name.match(regExp) && p.isShown) {
+    if (p.name.match(regExp) && p.isShown && p.inStock > 0) {
       return true;
     } else {
       return false;

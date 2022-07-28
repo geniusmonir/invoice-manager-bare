@@ -2,7 +2,6 @@ import { configureStore } from '@reduxjs/toolkit';
 import { combineReducers } from 'redux';
 import { persistReducer, persistStore } from 'redux-persist';
 import thunk from 'redux-thunk';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import customerReducer from './reducer/customer';
 import adminAuthReducer from './reducer/admin';
 import settingsReducer from './reducer/settings';
@@ -10,6 +9,9 @@ import categoryReducer from './reducer/category';
 import cartReducer from './reducer/cart';
 import productReducer from './reducer/product';
 import invoiceReducer from './reducer/invoice';
+// @ts-ignore
+import FSStorage from 'redux-persist-fs-storage';
+//import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const reducers = combineReducers({
   customer: customerReducer,
@@ -22,9 +24,9 @@ const reducers = combineReducers({
 });
 
 const persistConfig = {
-  key: 'invoice',
-  keyPrefix: 'webanion',
-  storage: AsyncStorage,
+  key: 'root',
+  keyPrefix: '',
+  storage: FSStorage(),
 };
 
 const persistedReducer = persistReducer(persistConfig, reducers);

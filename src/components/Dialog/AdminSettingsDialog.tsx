@@ -56,9 +56,13 @@ const AdminSettingsDialog: React.FC<{
 
     await ensureDirExists(backupDir);
 
+    const allInvoices = invoices.filter(
+      (inv) => Object.values(inv)[0].length !== 0
+    );
+
     await FileSystem.writeAsStringAsync(
       backupDirFile,
-      JSON.stringify(invoices),
+      JSON.stringify(allInvoices),
       {
         encoding: FileSystem.EncodingType.UTF8,
       }

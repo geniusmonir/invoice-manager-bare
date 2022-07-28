@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, Alert } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import Dialog from 'react-native-dialog';
 import Colors from '../../constants/Colors';
 import FontNames from '../../constants/FontNames';
@@ -25,7 +25,6 @@ const BackupRestoreDialogPr: React.FC<{
   handleDelete,
   handleImport,
 }) => {
-  const dispatch = useDispatch();
   const [isDialogVisible, setIsDialogVisible] = useState(false);
 
   const { owner_name } = useSelector((state: RootState) => state.settings);

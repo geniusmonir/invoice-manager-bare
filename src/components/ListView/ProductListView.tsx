@@ -1,5 +1,13 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, Image, TextInput, Alert } from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  TextInput,
+  Alert,
+  TouchableOpacity,
+} from 'react-native';
 import { ListItem } from 'react-native-elements';
 import { Icon } from 'react-native-elements';
 import Colors from '../../constants/Colors';
@@ -33,9 +41,7 @@ const ProductListView: React.FC<{
       {products.map((l: Product) => {
         return (
           <ListItem
-            onPress={() => {
-              viewImage(l.image);
-            }}
+            onPress={() => {}}
             containerStyle={{
               borderRadius: 4,
               borderBottomEndRadius: 30,
@@ -56,21 +62,27 @@ const ProductListView: React.FC<{
               marginVertical: 5,
               borderRadius: 4,
             }}>
-            <Image
-              source={{ uri: `data:image/jpeg;base64,${l.image}` }}
-              height={isLarge ? 150 : 117}
-              width={isLarge ? 150 : 117}
-              style={{
-                alignContent: 'center',
-                alignItems: 'center',
-                justifyContent: 'center',
-                backgroundColor: Colors.primaryColor,
-                borderRadius: 4,
-                height: isLarge ? 150 : 117,
-                width: isLarge ? 150 : 117,
-                borderTopLeftRadius: 20,
-              }}
-            />
+            <TouchableOpacity
+              activeOpacity={0.9}
+              onPress={() => {
+                viewImage(l.image);
+              }}>
+              <Image
+                source={{ uri: `data:image/jpeg;base64,${l.image}` }}
+                height={isLarge ? 150 : 117}
+                width={isLarge ? 150 : 117}
+                style={{
+                  alignContent: 'center',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  backgroundColor: Colors.primaryColor,
+                  borderRadius: 4,
+                  height: isLarge ? 150 : 117,
+                  width: isLarge ? 150 : 117,
+                  borderTopLeftRadius: 20,
+                }}
+              />
+            </TouchableOpacity>
 
             <ListItem.Content
               style={{
