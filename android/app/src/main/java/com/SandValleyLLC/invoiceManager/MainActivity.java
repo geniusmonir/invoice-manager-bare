@@ -1,5 +1,7 @@
 package com.SandValleyLLC.invoiceManager;
 
+import android.database.CursorWindow;
+import java.lang.reflect.Field;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -17,6 +19,15 @@ public class MainActivity extends ReactActivity {
     // This is required for expo-splash-screen.
     setTheme(R.style.AppTheme);
     super.onCreate(null);
+    try {
+      Field field = CursorWindow.class.getDeclaredField("sCursorWindowSize");
+      field.setAccessible(true);
+      field.set(null, 200 * 1024 * 1024); //200MB
+      } catch (Exception e) {
+    if (BuildConfig.DEBUG) {
+      e.printStackTrace();
+      }
+    }
   }
 
   /**

@@ -9,9 +9,7 @@ import categoryReducer from './reducer/category';
 import cartReducer from './reducer/cart';
 import productReducer from './reducer/product';
 import invoiceReducer from './reducer/invoice';
-// @ts-ignore
-import FSStorage from 'redux-persist-fs-storage';
-//import AsyncStorage from '@react-native-async-storage/async-storage';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const reducers = combineReducers({
   customer: customerReducer,
@@ -26,7 +24,7 @@ const reducers = combineReducers({
 const persistConfig = {
   key: 'root',
   keyPrefix: '',
-  storage: FSStorage(),
+  storage: AsyncStorage,
 };
 
 const persistedReducer = persistReducer(persistConfig, reducers);
